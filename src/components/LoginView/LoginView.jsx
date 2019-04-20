@@ -59,7 +59,7 @@ class LoginView extends Component {
 		return (
 			<div className={styles.login}>
 				<div className={styles.left}>
-					<img className={styles.background} alt="" src={background}></img>
+					<img className={styles.background} alt='' src={background}></img>
 				</div>
 
 				<div className={styles.right}>
@@ -70,19 +70,19 @@ class LoginView extends Component {
 
 					<Form className={styles.form}>
 						<Form.Field>
-							<Form.Input label="Username/Email" placeholder='Username/Email' onChange={this.usernameInputChangeHandler}></Form.Input>
+							<Form.Input label='Username/Email' placeholder='Username/Email' onChange={this.usernameInputChangeHandler}></Form.Input>
 						</Form.Field>
 
 						<Form.Field>
-							<Form.Input label="Password" type='password' placeholder='Password' onChange={this.passwordInputChangeHandler}></Form.Input>
+							<Form.Input type='password' label='Password' placeholder='Password' onChange={this.passwordInputChangeHandler}></Form.Input>
 						</Form.Field>
 
 						<Form.Field>
-							<Button fluid type="button" className={styles.sign_in_button} onClick={this.signInButtonClickHandler}>Sign In</Button>
+							<Button fluid className={styles.sign_in_button} type='button' onClick={this.signInButtonClickHandler}>Sign In</Button>
 						</Form.Field>
 
 						<Form.Field>
-							<Button fluid type="button" className={styles.register_button} onClick={this.registerButtonClickHandler}>Register</Button>
+							<Button fluid className={styles.register_button} type='button' onClick={this.registerButtonClickHandler}>Register</Button>
 						</Form.Field>
 					</Form>
 				</div>

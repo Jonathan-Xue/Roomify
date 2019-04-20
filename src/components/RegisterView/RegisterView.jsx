@@ -103,7 +103,7 @@ class RegisterView extends Component {
 		return (
 			<div className={styles.register}>
 				<div className={styles.left}>
-					<img className={styles.background} alt="" src={background}></img>
+					<img className={styles.background} alt='' src={background}></img>
 				</div>
 
 				<div className={styles.right}>
@@ -114,23 +114,23 @@ class RegisterView extends Component {
 
 					<Form className={styles.form}>
 						<Form.Field>
-							<Form.Input label="Email" placeholder='Email' onChange={this.emailInputChangeHandler} error={this.state.emailError}></Form.Input>
+							<Form.Input label='Email' placeholder='Email' onChange={this.emailInputChangeHandler} error={this.state.emailError}></Form.Input>
 						</Form.Field>
 
 						<Form.Field>
-							<Form.Input label="Phone Number" placeholder='Phone Number' onChange={this.phoneNumberInputChangeHandler} error={this.state.phoneNumberError}></Form.Input>
+							<Form.Input label='Phone Number' placeholder='Phone Number' onChange={this.phoneNumberInputChangeHandler} error={this.state.phoneNumberError}></Form.Input>
 						</Form.Field>
 
 						<Form.Field>
-							<Form.Input label="Password" type='password' placeholder='Password' onChange={this.passwordInputChangeHandler} error={this.state.passwordError}></Form.Input>
+							<Form.Input type='password' label='Password' placeholder='Password' onChange={this.passwordInputChangeHandler} error={this.state.passwordError}></Form.Input>
 						</Form.Field>
 
 						<Form.Field>
-							<Form.Input label="Re-enter Password" type='password' placeholder='Re-enter Password' onChange={this.passwordMatchInputChangeHandler} error={this.state.passwordMatchError}></Form.Input>
+							<Form.Input type='password' label='Re-enter Password' placeholder='Re-enter Password' onChange={this.passwordMatchInputChangeHandler} error={this.state.passwordMatchError}></Form.Input>
 						</Form.Field>
 
 						<Form.Field>
-							<Button fluid type="button" className={styles.register_button} onClick={this.registerButtonClickHandler}>Register</Button>
+							<Button fluid className={styles.register_button} type='button' onClick={this.registerButtonClickHandler}>Register</Button>
 						</Form.Field>
 					</Form>
 				</div>
