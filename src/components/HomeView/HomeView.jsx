@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 import styles from './HomeView.module.scss'
 
 class HomeView extends Component {
+	constructor() {
+		super();
+
+		this.state = {
+			
+		}
+	}
+	
 	render() {
 		return (
 			<div className={styles.home}>

@@ -8,7 +8,6 @@ import HomeView from '../HomeView/HomeView.jsx'
 import LoginView from '../LoginView/LoginView.jsx'
 import RegisterView from '../RegisterView/RegisterView.jsx'
 
-
 class App extends Component {
 	render() {
 		return (
