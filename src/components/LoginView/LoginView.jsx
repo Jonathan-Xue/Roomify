@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Message } from 'semantic-ui-react'
 
+import firebase from '../Firebase';
 import styles from './LoginView.module.scss'
 
 import background from './background.jpg'
@@ -11,7 +12,10 @@ class LoginView extends Component {
 
 		this.state = {
 			username: '',
-			password: ''
+			password: '',
+
+			formError: false,
+			loginError: null
 		}
 
 		// Input Change Handlers
@@ -39,12 +43,14 @@ class LoginView extends Component {
 	
 	signInButtonClickHandler(event) {
 		// User Auth
-		if (true) {
+		firebase.auth().signInWithEmailAndPassword(this.state.username, this.state.password).then((user) => {
 			this.props.history.push({
 				pathname: '/',
 				state: {}
 			});
-		}
+		}).catch((err) => {
+			this.setState({ loginError: err });
+		});
 	}
 
 	registerButtonClickHandler(event) {
@@ -68,7 +74,14 @@ class LoginView extends Component {
 						<h3>Find Your Home</h3>
 					</div>
 
-					<Form className={styles.form}>
+					<Form error className={styles.form}>
+						{this.state.loginError
+							? 
+								<Message error header="Error" content="Unable to log in. The username and/or password you have entered is incorrect."/>
+							:
+								null
+						}
+
 						<Form.Field>
 							<Form.Input label='Username/Email' placeholder='Username/Email' onChange={this.usernameInputChangeHandler}></Form.Input>
 						</Form.Field>

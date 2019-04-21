@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import 'semantic-ui-css/semantic.min.css'
 
@@ -17,9 +16,6 @@ class App extends Component {
 
 					<Route exact path='/login' component={LoginView}/>
 					<Route exact path='/register' component={RegisterView}/>
-
-					{/* Redirect To Login Page */}
-					<Redirect from="/" to="/login" />
 				</Switch>
 			</Router>
 		);

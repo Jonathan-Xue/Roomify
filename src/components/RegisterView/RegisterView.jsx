@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form, Message } from 'semantic-ui-react'
 
+import firebase from '../Firebase';
 import styles from './RegisterView.module.scss'
 
 import background from './background.jpg'
@@ -18,7 +19,10 @@ class RegisterView extends Component {
 			emailError: true,
 			phoneNumberError: true,
 			passwordError: true,
-			passwordMatchError: true
+			passwordMatchError: true,
+
+			formError: false,
+			registerError: null
 		}
 
 		// Input Change Handlers
@@ -87,15 +91,24 @@ class RegisterView extends Component {
 	}
 
 	registerButtonClickHandler(event) {
-		// Form Is Free Of Errors
-		if (!this.state.emailError && !this.state.phoneNumberError && !this.state.passwordError && !this.state.passwordMatchError) {
+		// Form Has An Error
+		if (this.state.emailError || this.state.phoneNumberError || this.state.passwordError || this.state.passwordMatchError) {
+			this.setState({formError: true});
+			this.setState({registerError: null});
+		} else {
+			// Form Error
+			this.setState({formError: false});
+
 			// User Registration
-			if (true) {
+			firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password).then((user) => {
+				// console.log(user.uid);
 				this.props.history.push({
 					pathname: '/',
 					state: {}
 				});
-			}
+			}).catch((err) => {
+				this.setState({registerError: err});
+			});
 		}
 	}
 
@@ -112,7 +125,18 @@ class RegisterView extends Component {
 						<h3>Find Your Home</h3>
 					</div>
 
-					<Form className={styles.form}>
+					<Form error className={styles.form}>
+						{this.state.formError
+							? 
+								<Message error header="Invalid Field(s)" content="One of more of the required fields are empty/invalid. Please verify the information above."/>
+							:
+								this.state.registerError 
+									? 
+										<Message error header="Account Already Exists" content="An account already exists for this email address. Please log in or confirm that your email address is correct."/>
+									:
+										null
+						}
+
 						<Form.Field>
 							<Form.Input label='Email' placeholder='Email' onChange={this.emailInputChangeHandler} error={this.state.emailError}></Form.Input>
 						</Form.Field>
