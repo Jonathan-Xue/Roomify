@@ -6,6 +6,7 @@ import "semantic-ui-css/semantic.min.css";
 import HomeView from "../HomeView/HomeView.jsx";
 import LoginView from "../LoginView/LoginView.jsx";
 import RegisterView from "../RegisterView/RegisterView.jsx";
+import DetailView from "../DetailView/DetailView.jsx";
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
 
           <Route exact path="/login" component={LoginView} />
           <Route exact path="/register" component={RegisterView} />
+          <Route path="/apartment/:id" component={DetailView} />
         </Switch>
       </Router>
     );
