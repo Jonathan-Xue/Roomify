@@ -1,0 +1,48 @@
+@import '../../assets/colors.scss';
+@import '../../assets/fonts.scss';
+
+.search {
+  padding-top: 70px;
+  padding-bottom: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background: $dark_blue;
+  color: $white;
+
+  h1 {
+    padding-right: 20px;
+  }
+
+  .searchBar {
+    background: $medium_ruby;
+    border-radius: 0px;
+
+    form {
+      display: flex;
+      align-items: center;
+      height: 50px;
+      padding: 10px;
+    }
+
+    input {
+      color: $white;
+      font-size: 2em;
+      width: 50vw;
+      max-width: 400px;
+      padding: 0;
+      margin: 0;
+      border: 0;
+      background-color: transparent;
+    }
+
+    input:focus,
+    textarea {
+      outline: none !important;
+    }
+  }
+}

@@ -1,107 +1,143 @@
-import React, { Component } from 'react'
-import { Button, Form, Message } from 'semantic-ui-react'
+import React, { Component } from "react";
+import { Button, Form, Message } from "semantic-ui-react";
 
-import firebase from '../Firebase';
-import styles from './LoginView.module.scss'
+import firebase from "../Firebase";
+import styles from "./LoginView.module.scss";
 
-import background from './background.jpg'
+import background from "./background.jpg";
+import Navbar from "../Navbar/Navbar";
 
 class LoginView extends Component {
-	constructor() {
-		super();
+  constructor() {
+    super();
 
-		this.state = {
-			username: '',
-			password: '',
+    this.state = {
+      username: "",
+      password: "",
 
-			formError: false,
-			loginError: null
-		}
+      formError: false,
+      loginError: null
+    };
 
-		// Input Change Handlers
-		this.usernameInputChangeHandler = this.usernameInputChangeHandler.bind(this);
-		this.passwordInputChangeHandler = this.passwordInputChangeHandler.bind(this);
+    // Input Change Handlers
+    this.usernameInputChangeHandler = this.usernameInputChangeHandler.bind(
+      this
+    );
+    this.passwordInputChangeHandler = this.passwordInputChangeHandler.bind(
+      this
+    );
 
-		// Click Handlers
-		this.signInButtonClickHandler = this.signInButtonClickHandler.bind(this);
-		this.registerButtonClickHandler = this.registerButtonClickHandler.bind(this);
-	}
+    // Click Handlers
+    this.signInButtonClickHandler = this.signInButtonClickHandler.bind(this);
+    this.registerButtonClickHandler = this.registerButtonClickHandler.bind(
+      this
+    );
+  }
 
-	usernameInputChangeHandler(event) {
-		// Update State
-		this.setState({username: event.target.value}, () => {
-			// console.log(this.state.username);
-		});
-	}
+  usernameInputChangeHandler(event) {
+    // Update State
+    this.setState({ username: event.target.value }, () => {
+      // console.log(this.state.username);
+    });
+  }
 
-	passwordInputChangeHandler(event) {
-		// Update State
-		this.setState({password: event.target.value}, () => {
-			// console.log(this.state.password);
-		});
-	}
-	
-	signInButtonClickHandler(event) {
-		// User Auth
-		firebase.auth().signInWithEmailAndPassword(this.state.username, this.state.password).then((user) => {
-			this.props.history.push({
-				pathname: '/',
-				state: {}
-			});
-		}).catch((err) => {
-			this.setState({ loginError: err });
-		});
-	}
+  passwordInputChangeHandler(event) {
+    // Update State
+    this.setState({ password: event.target.value }, () => {
+      // console.log(this.state.password);
+    });
+  }
 
-	registerButtonClickHandler(event) {
-		// Link To Register Page
-		this.props.history.push({
-			pathname: '/register',
-			state: {}
-		});
-	}
+  signInButtonClickHandler(event) {
+    // User Auth
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(this.state.username, this.state.password)
+      .then(user => {
+        this.props.history.push({
+          pathname: "/",
+          state: {}
+        });
+      })
+      .catch(err => {
+        this.setState({ loginError: err });
+      });
+  }
 
-	render() {
-		return (
-			<div className={styles.login}>
-				<div className={styles.left}>
-					<img className={styles.background} alt='' src={background}></img>
-				</div>
+  registerButtonClickHandler(event) {
+    // Link To Register Page
+    this.props.history.push({
+      pathname: "/register",
+      state: {}
+    });
+  }
 
-				<div className={styles.right}>
-					<div className={styles.header}>
-						<h1>ROOMIFY</h1>
-						<h3>Find Your Home</h3>
-					</div>
+  render() {
+    return (
+      <div className={styles.login}>
+        <Navbar />
+        <div className={styles.left}>
+          <img className={styles.background} alt="" src={background} />
+        </div>
 
-					<Form error className={styles.form}>
-						{this.state.loginError
-							? 
-								<Message error header="Error" content="Unable to log in. The username and/or password you have entered is incorrect."/>
-							:
-								null
-						}
+        <div className={styles.right}>
+          <div className={styles.header}>
+            <h1>ROOMIFY</h1>
+            <h3>Find Your Home</h3>
+          </div>
 
-						<Form.Field>
-							<Form.Input label='Username/Email' placeholder='Username/Email' onChange={this.usernameInputChangeHandler}></Form.Input>
-						</Form.Field>
+          <Form error className={styles.form}>
+            {this.state.loginError ? (
+              <Message
+                error
+                header="Error"
+                content="Unable to log in. The username and/or password you have entered is incorrect."
+              />
+            ) : null}
 
-						<Form.Field>
-							<Form.Input type='password' label='Password' placeholder='Password' onChange={this.passwordInputChangeHandler}></Form.Input>
-						</Form.Field>
+            <Form.Field>
+              <Form.Input
+                label="Username/Email"
+                placeholder="Username/Email"
+                onChange={this.usernameInputChangeHandler}
+              />
+            </Form.Field>
 
-						<Form.Field>
-							<Button fluid className={styles.sign_in_button} type='button' onClick={this.signInButtonClickHandler}>Sign In</Button>
-						</Form.Field>
+            <Form.Field>
+              <Form.Input
+                type="password"
+                label="Password"
+                placeholder="Password"
+                onChange={this.passwordInputChangeHandler}
+              />
+            </Form.Field>
 
-						<Form.Field>
-							<Button fluid className={styles.register_button} type='button' onClick={this.registerButtonClickHandler}>Register</Button>
-						</Form.Field>
-					</Form>
-				</div>
-			</div>	
-		);
-	}
+            <Form.Field>
+              <Button
+                fluid
+                className={styles.sign_in_button}
+                type="button"
+                onClick={this.signInButtonClickHandler}
+              >
+                Sign In
+              </Button>
+            </Form.Field>
+
+            <Form.Field>
+              <Button
+                fluid
+                className={styles.register_button}
+                type="button"
+                onClick={this.registerButtonClickHandler}
+              >
+                Register
+              </Button>
+            </Form.Field>
+          </Form>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default LoginView
+export default LoginView;
