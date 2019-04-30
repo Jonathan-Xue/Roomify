@@ -1,0 +1,100 @@
+@import '../../../assets/colors.scss';
+@import '../../../assets/fonts.scss';
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  background: $dark_blue;
+}
+
+.apartmentView {
+  width: 80vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.apartment {
+  background: $white;
+  width: 70vw;
+  overflow: hidden;
+  margin: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+
+  .heart {
+    font-size: 1.5em;
+    color: $black_shadows;
+    margin-left: auto;
+    height: 1.5em;
+  }
+
+  .red {
+    font-size: 1.5em;
+    margin-left: auto;
+    color: $black_shadows;
+    cursor: pointer;
+    opacity: 0.8;
+    height: 1em;
+  }
+
+  .red:hover {
+    opacity: 1;
+  }
+
+  .saved {
+    color: $medium_ruby;
+    opacity: 1;
+  }
+}
+
+.apartmentPic {
+  width: 200px;
+  height: 200px;
+  background-image: url("./default_apartment.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.apartmentDescription {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  .apartmentName {
+    padding: 5px;
+    color: $dark_blue;
+    margin: 0;
+  }
+
+  .apartmentAddress {
+    padding: 2px;
+    color: $black_shadows;
+    margin: 0 0 5px 0;
+  }
+
+  .icons {
+    display: flex;
+    justify-content: flex-start;
+    margin: 5px 0;
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 40px;
+    padding: 2px;
+    color: $desert_sand;
+    border-radius: 5px;
+    border: .5px $desert_sand solid;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}

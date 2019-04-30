@@ -1,0 +1,45 @@
+@import '../../assets//colors.scss';
+@import '../../assets/fonts.scss';
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  color: $white;
+  padding-left: 50px;
+  cursor: pointer;
+
+  h1 {
+    transition: color 0.2s;
+    font-family: 'Comfortaa', cursive;
+  }
+}
+
+.brand:hover {
+  h1 {
+    color: $medium_ruby;
+  }
+}
+
+.login_btn {
+  color: $white;
+  padding-right: 50px;
+  cursor: pointer;
+
+  h2 {
+    transition: color 0.2s;
+  }
+}
+
+.login_btn:hover {
+  h2 {
+    color: $desert_sand;
+  }
+}

@@ -1,66 +1,66 @@
 .login {
-	display: flex;
-	font-size: 1rem;
-	height: 100%;
-	overflow: hidden;
+  display: flex;
+  font-size: 1rem;
+  height: 100%;
+  overflow: hidden;
 
-	.left {
-		flex: 50%;
-		height: 100%;
-		width: 50%;
+  .left {
+    flex: 50%;
+    height: 100%;
+    width: 50%;
 
-		.background {
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: contain;
-			height: 100%;
-			object-fit: cover;
-			width: 100%;
-		}
-	}
+    .background {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
 
-	.right {
-		align-items: center;
-		background-color: #EEE2DC;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		flex: 50%;
+  .right {
+    align-items: center;
+    background-color: #EEE2DC;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 50%;
 
-		.header {
-			margin-bottom: 3em;
-			padding: 0 0;
-			text-align: center;
+    .header {
+      margin-bottom: 3em;
+      padding: 0 0;
+      text-align: center;
 
-			h1 {
-				color: #AC3B61;
-				font-size: 3em;
-				margin: inherit 0;
-				padding: 0 0;
-			}
+      h1 {
+        color: #AC3B61;
+        font-size: 3em;
+        margin: inherit 0;
+        padding: 0 0;
+      }
 
-			h3 {
-				color: #000000;
-				font-size: 1.5em;
-				margin: 0 0;
-				padding: 0 0;
-			}
-		}
+      h3 {
+        color: #000000;
+        font-size: 1.5em;
+        margin: 0 0;
+        padding: 0 0;
+      }
+    }
 
-		.form {
-			width: 62.5%;
+    .form {
+      width: 62.5%;
 
-			.register_button {
-				background-color: #EDC7b7;
-				color: #FFFFFF;
-				text-decoration-color: #000000;
-			}
+      .register_button {
+        background-color: #EDC7b7;
+        color: #FFFFFF;
+        text-decoration-color: #000000;
+      }
 
-			.sign_in_button {
-				background-color: #BAB2B5;
-				color: #FFFFFF;
-				text-decoration-color: #000000;
-			}
-		}
-	}
+      .sign_in_button {
+        background-color: #BAB2B5;
+        color: #FFFFFF;
+        text-decoration-color: #000000;
+      }
+    }
+  }
 }

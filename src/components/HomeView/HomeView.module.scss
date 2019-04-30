@@ -1,3 +1,53 @@
-.home {
-	
+@import '../../assets/colors.scss';
+@import '../../assets/fonts.scss';
+
+.jumbotron {
+  padding-top: 50px;
+  width: 100%;
+  height: 100vh;
+  background-image: url("./apartment-pic.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .jumbotron_text {
+    margin-top: -40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 20px;
+
+    h1 {
+      color: $medium_ruby;
+      font-size: 3em;
+
+      .brand {
+        display: inline;
+        color: $white;
+        font-family: 'Comfortaa', cursive;
+      }
+    }
+
+    h2 {
+      color: $dark_blue;
+    }
+  }
+
+  .down_icon {
+    font-size: 3em;
+    color: $white;
+    margin-top: 30px;
+    opacity: .7;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+
+  .down_icon:hover {
+    opacity: 1;
+  }
 }
