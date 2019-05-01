@@ -1,67 +1,59 @@
 import React, { Component } from "react";
 
-import styles from "./ApartmentView.module.scss";
+import { getApartments } from "../../../backend_helper";
 
-import { FaBed, FaBath, FaHeart } from "react-icons/fa";
+import ApartmentDetail from "./ApartmentDetail/ApartmentDetail";
 
 class ApartmentView extends Component {
   constructor() {
     super();
 
     this.state = {
-      heartClass: styles.heart
+      apartments: []
     };
-
-    this.heartApartment = this.heartApartment.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.loggedIn) {
-      this.setState({
-        heartClass: styles.red
-      });
-    }
-  }
+    getApartments(
+      100,
+      {},
 
-  heartApartment(event) {
-    if (this.props.loggedIn) {
-      if (event.target.classList.contains(styles.saved)) {
-        event.target.classList.remove(styles.saved);
-      } else {
-        event.target.classList.add(styles.saved);
-      }
-    }
+      0,
+      0,
+      0,
+      0
+    ).then(res => {
+      this.setState({
+        apartments: res.data.data
+      });
+    });
   }
 
   render() {
-    return (
-      <div className={styles.wrapper}>
-        <div className={styles.apartmentView}>
-          <div className={styles.apartment}>
-            <div className={styles.apartmentPic}>
-              {/* <img src="" alt="apartment" /> */}
-            </div>
-            <div className={styles.apartmentDescription}>
-              <h2 className={styles.apartmentName}>Apartment</h2>
-              <h3 className={styles.apartmentAddress}>
-                123 Illinois St., Urbana, IL 61801
-              </h3>
-              <div className={styles.icons}>
-                <div className={styles.icon}>
-                  2<FaBed />
-                </div>
-                <div className={styles.icon}>
-                  1<FaBath />
-                </div>
-              </div>
-            </div>
-            <div className={this.state.heartClass}>
-              <FaHeart onClick={this.heartApartment} />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    var apartmentList = [];
+
+    if (this.state.apartments) {
+      for (let i = 0; i < this.state.apartments.length; i++) {
+        var apartment = this.state.apartments[i];
+
+        apartmentList.push(
+          <ApartmentDetail
+            loggedIn={this.props.loggedIn}
+            address={apartment.Address}
+            bedrooms={apartment.Bedrooms}
+            bathrooms={apartment.Bathrooms}
+            start={apartment.StartDate}
+            end={apartment.EndDate}
+            latLong={apartment.LatLong}
+            userId={apartment.UserId}
+            id={apartment._id}
+            key={apartment._id}
+          />
+        );
+      }
+    }
+
+    return apartmentList;
   }
 }
 

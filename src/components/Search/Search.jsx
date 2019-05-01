@@ -42,7 +42,11 @@ class Search extends Component {
             </form>
           </div>
         </div>
-        <ApartmentView loggedIn={this.props.loggedIn} />
+        <div className={styles.apartmentWrapper}>
+          <div className={styles.apartmentView}>
+            <ApartmentView loggedIn={this.props.loggedIn} />
+          </div>
+        </div>
       </div>
     );
   }
