@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import styles from "./ApartmentDetail.module.scss";
 
@@ -42,7 +43,24 @@ class ApartmentDetail extends Component {
               {/* <img src="" alt="apartment" /> */}
             </div>
             <div className={styles.apartmentDescription}>
-              <h2 className={styles.apartmentName}>Apartment</h2>
+              <Link
+                to={{
+                  pathname: `/apartment/${this.props.id}`,
+                  state: {
+                    loggedIn: this.props.loggedIn,
+                    address: this.props.address,
+                    bedrooms: this.props.bedrooms,
+                    bathrooms: this.props.bathrooms,
+                    start: this.props.start,
+                    end: this.props.end,
+                    latLong: this.props.latLong,
+                    userId: this.props.userId,
+                    id: this.props.id
+                  }
+                }}
+              >
+                <h2 className={styles.apartmentName}>Apartment</h2>
+              </Link>
               <h3 className={styles.apartmentAddress}>{this.props.address}</h3>
               <div className={styles.icons}>
                 <div className={styles.icon}>

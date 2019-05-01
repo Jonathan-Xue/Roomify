@@ -25,14 +25,16 @@ class DetailView extends Component {
           <div className={styles.apartmentDescription}>
             <h2 className={styles.apartmentName}>Apartment</h2>
             <h3 className={styles.apartmentAddress}>
-              123 Illinois St., Urbana, IL 61801
+              {this.props.location.state.address}
             </h3>
             <div className={styles.icons}>
               <div className={styles.icon}>
-                2<FaBed />
+                {this.props.location.state.bedrooms}
+                <FaBed />
               </div>
               <div className={styles.icon}>
-                1<FaBath />
+                {this.props.location.state.bathrooms}
+                <FaBath />
               </div>
             </div>
           </div>
