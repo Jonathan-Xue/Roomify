@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/roomify/static/css/main.8f677efd.chunk.css",
-    "main.js": "/roomify/static/js/main.dfe15bcd.chunk.js",
-    "main.js.map": "/roomify/static/js/main.dfe15bcd.chunk.js.map",
+    "main.css": "/roomify/static/css/main.a44b548d.chunk.css",
+    "main.js": "/roomify/static/js/main.d8eff477.chunk.js",
+    "main.js.map": "/roomify/static/js/main.d8eff477.chunk.js.map",
     "runtime~main.js": "/roomify/static/js/runtime~main.1f94ef49.js",
     "runtime~main.js.map": "/roomify/static/js/runtime~main.1f94ef49.js.map",
     "static/css/2.ae269c24.chunk.css": "/roomify/static/css/2.ae269c24.chunk.css",
-    "static/js/2.e05a50c5.chunk.js": "/roomify/static/js/2.e05a50c5.chunk.js",
-    "static/js/2.e05a50c5.chunk.js.map": "/roomify/static/js/2.e05a50c5.chunk.js.map",
+    "static/js/2.b91d2936.chunk.js": "/roomify/static/js/2.b91d2936.chunk.js",
+    "static/js/2.b91d2936.chunk.js.map": "/roomify/static/js/2.b91d2936.chunk.js.map",
     "index.html": "/roomify/index.html",
-    "precache-manifest.144d51c493ff0d3180e8d97e9e0508f6.js": "/roomify/precache-manifest.144d51c493ff0d3180e8d97e9e0508f6.js",
+    "precache-manifest.432ea9d199b02c85e4edeb3ba42fc9d8.js": "/roomify/precache-manifest.432ea9d199b02c85e4edeb3ba42fc9d8.js",
     "service-worker.js": "/roomify/service-worker.js",
     "static/css/2.ae269c24.chunk.css.map": "/roomify/static/css/2.ae269c24.chunk.css.map",
-    "static/css/main.8f677efd.chunk.css.map": "/roomify/static/css/main.8f677efd.chunk.css.map",
+    "static/css/main.a44b548d.chunk.css.map": "/roomify/static/css/main.a44b548d.chunk.css.map",
     "static/media/HomeView.module.scss": "/roomify/static/media/apartment-pic.e52478de.jpg",
     "static/media/background.jpg": "/roomify/static/media/background.59a648ac.jpg",
     "static/media/semantic.min.css": "/roomify/static/media/outline-icons.ef60a4f6.woff",
-    "static/media/ApartmentView.module.scss": "/roomify/static/media/default_apartment.1a55f0f7.jpg"
+    "static/media/DetailView.module.scss": "/roomify/static/media/default_apartment.1a55f0f7.jpg"
   }
 }
