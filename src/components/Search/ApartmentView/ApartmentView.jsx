@@ -39,13 +39,7 @@ class ApartmentView extends Component {
         apartmentList.push(
           <ApartmentDetail
             loggedIn={this.props.loggedIn}
-            address={apartment.Address}
-            bedrooms={apartment.Bedrooms}
-            bathrooms={apartment.Bathrooms}
-            start={apartment.StartDate}
-            end={apartment.EndDate}
-            latLong={apartment.LatLong}
-            userId={apartment.UserId}
+            apartment={apartment}
             id={apartment._id}
             key={apartment._id}
           />

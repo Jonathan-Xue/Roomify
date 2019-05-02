@@ -13,8 +13,7 @@ class HomeView extends Component {
     super();
 
     this.state = {
-      searchValue: "",
-      loggedIn: false
+      searchValue: ""
     };
 
     this.getSearchVal = this.getSearchVal.bind(this);

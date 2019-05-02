@@ -17,22 +17,8 @@
     height: 1.5em;
   }
 
-  .red {
-    cursor: pointer;
-    font-size: 1.5em;
-    margin-left: auto;
-    color: $black_shadows;
-    opacity: 0.8;
-    height: 1em;
-  }
-
-  .red:hover {
-    opacity: 1;
-  }
-
   .saved {
     color: $medium_ruby;
-    opacity: 1;
   }
 }
 
@@ -80,5 +66,40 @@
     border: .5px $desert_sand solid;
     margin-left: 5px;
     margin-right: 5px;
+  }
+
+  .availability {
+    padding: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    .cal {
+      color: $medium_ruby;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+
+  .user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+    color: $dark_blue;
+
+    .userIcon {
+      margin-left: 5px;
+      margin-right: 5px;
+      padding: 2px;
+      width: 25px;
+      height: 25px;
+      border: .5px $dark_blue solid;
+      border-radius: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
