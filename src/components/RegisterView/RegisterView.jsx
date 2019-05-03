@@ -201,7 +201,7 @@ class RegisterView extends Component {
               <Message
                 error
                 header="Invalid Field(s)"
-                content="One of more of the required fields are empty/invalid. Please verify the information above."
+                content="One of more of the required fields are empty/invalid. Please verify the information below."
               />
             ) : this.state.registerError ? (
               <Message

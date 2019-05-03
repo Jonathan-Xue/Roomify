@@ -4,17 +4,16 @@
 .userprofile {
   display: flex;
   justify-content: flex-start;
-  height: 100%;
-  padding-top: 60px;
+  min-height: 100%;
   width: 100%;
 
   .profile {
     flex: 1;
     background-color: $white;
     display: flex;
+    padding-top: 5em;
     flex-direction: column;
     align-items: center;
-    height: 100%;
     text-align: center;
     color: $dark_blue;
 
@@ -50,10 +49,21 @@
 
       .add_btn {
         background-color: $eggshell;
+        color: $dark_blue;
         transition: background-color 0.2s;
       }
 
       .add_btn:hover {
+        background-color: $eggshell;
+      }
+
+      .logout_btn {
+        background-color: $medium_ruby;
+        color: $white;
+        transition: background-color 0.2s;
+      }
+
+      .logout_btn:hover {
         background-color: $medium_ruby;
       }
     }
@@ -62,7 +72,7 @@
   .apartments {
     background-color: $dark_blue;
     flex: 3;
-    padding: 2em;
+    padding: 5em 2em 2em 2em;
 
     .ownedApartments {
       .cardGroup {
