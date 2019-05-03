@@ -115,6 +115,54 @@ export const deleteApartment = async aptId => {
   }
 };
 
+// PUT: '/apartments/:userid/current'
+export const addToCurrentApts = async (aptId, userId) => {
+  try {
+    let body = {
+      AptID: aptId,
+      crossDomain: true
+    };
+
+    const response = await axios.put(BASE_URL + '/apartments/' + userId + '/current', body)
+    return response;
+
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+// PUT: '/apartments/:userid/saved'
+export const addToCurrentApts = async (aptId, userId) => {
+  try {
+    let body = {
+      AptID: aptId,
+      crossDomain: true
+    };
+
+    const response = await axios.put(BASE_URL + '/apartments/' + userId + '/saved', body)
+    return response;
+    
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+// DELETE: '/apartments/:userid/saved'
+export const addToCurrentApts = async (aptId, userId) => {
+  try {
+    let body = {
+      AptID: aptId,
+      crossDomain: true
+    };
+
+    const response = await axios.delete(BASE_URL + '/apartments/' + userId + '/saved', body)
+    return response;
+    
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 //GET: '/users'
 export const getUsers = async (count, where, limit, select, sort, skip) => {
   try {
@@ -132,12 +180,13 @@ export const getUsers = async (count, where, limit, select, sort, skip) => {
 //POST: '/users’
 export const createUser = async (userId, cellPhone, email, name, imgURL) => {
   try {
-    /**req.body.currentApartments: []
-     *req.body.userID: String
-     *req.body.savedApartments: []
-     *req.body.cellPhone: String
-     *req.body.email: String
-     *req.body.name: String
+    /**req.body.CurrentApartments: []
+     *req.body.UserID: String
+     *req.body.SavedApartments: []
+     *req.body.CellPhone: String
+     *req.body.Email: String
+     *req.body.Name: String
+     *req.body.ImageURL: String
      */
 
     let body = {
@@ -174,11 +223,12 @@ export const getUser = async userId => {
 //PUT: '/users/:id'
 export const updateUser = async (currentApts, savedApts, cellPhone, email, name, userId, imgURL) => {
   try {
-    /**req.body.currentApartments: []
-     *req.body.savedApartments: []
-     *req.body.cellPhone: String
-     *req.body.email: String
-     *req.body.name: String
+    /**req.body.CurrentApartments: []
+     *req.body.SavedApartments: []
+     *req.body.CellPhone: String
+     *req.body.Email: String
+     *req.body.Name: String
+     *req.body.ImageURL: String
      */
 
     let body = {
