@@ -31,7 +31,13 @@ class DetailView extends Component {
       this.setState({
         apartment: res.data.data
       });
+    }).catch(err => {
+      this.props.history.push({
+        pathname: "/",
+        state: {}
+      });
     });
+    
     if (this.state.apartment.StartDate) {
       this.setState({
         startDate: new Date(this.state.apartment.StartDate)
