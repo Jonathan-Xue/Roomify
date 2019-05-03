@@ -1,3 +1,84 @@
+@import '../../assets/colors.scss';
+@import '../../assets/fonts.scss';
+
 .userprofile {
-	
+	display: flex;
+	height: 100%;
+	padding-top: 60px;
+	width: 100%;
+
+	.profile {
+		background-color: $dark_blue;
+		display: block;
+		flex: 1;
+		height: 100%;
+		text-align: center;
+
+		.profilePicture {
+			display: block;
+			height: auto;
+			margin: 0 auto;
+			object-fit: contain;
+			object-position: center center;
+			width: 100%;
+		}
+
+		.profileName {
+			background-color: $black;
+			padding: 0.5em;
+
+			h1 {
+				color: $white;
+				font-size: 2.7em;
+			}
+		}
+
+		.profileDetails {
+			display: block;
+			padding: 1em 1em 0 1em;
+			width: 100%;
+
+			.profileDetailsSection {
+				color: $white;
+				display: flex;
+				font-size: 1.25em;
+				justify-content: space-between;
+			}
+		}
+
+		.profileMisc {
+			display: block;
+			padding: 0 1em 1em 1em;
+			width: 100%;
+		}
+	}
+
+	.apartments {
+		background-color: $medium_ruby;
+		display: block;
+		flex: 3;
+		padding: 2em;
+
+		.ownedApartments {
+			.cardGroup {
+				margin-bottom: 2em;
+			}
+
+			h1 {
+				color: $white;
+				border-bottom: 1px solid $white;
+				padding-bottom: 5px;
+				margin-bottom: 1em;
+			}
+		}
+
+		.favoriteApartments {
+			h1 {
+				color: $white;
+				border-bottom: 1px solid $white;
+				padding-bottom: 5px;
+				margin-bottom: 1em;
+			}
+		}
+	}
 }

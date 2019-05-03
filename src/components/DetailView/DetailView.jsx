@@ -71,9 +71,8 @@ class DetailView extends Component {
       <div className={styles.detailView}>
         <Navbar />
         <div className={styles.apartment}>
-          <div className={styles.apartmentPic}>
-            {/* <img src="" alt="apartment" /> */}
-          </div>
+          <img className={styles.apartmentPic} src={this.state.apartment.ImageURL} alt="apartment" />
+          
           <div className={styles.apartmentDescription}>
             <h2 className={styles.apartmentName}>Apartment</h2>
             <h3 className={styles.apartmentAddress}>
