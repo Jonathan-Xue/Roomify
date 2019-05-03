@@ -137,7 +137,7 @@ class RegisterView extends Component {
         .then(user => {
           // Create User In Database
           createUser(
-            user.uid,
+            user.user.uid,
             this.state.phoneNumber,
             this.state.email,
             this.state.name
