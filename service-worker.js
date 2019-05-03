@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.0/workbox-sw.js");
 
 importScripts(
-  "/roomify/precache-manifest.0beaf92c354dd3d6becbc4e97fa3cfae.js"
+  "/roomify/precache-manifest.de2d8533b7b2c1e2a125e051552c9669.js"
 );
 
 self.addEventListener('message', (event) => {

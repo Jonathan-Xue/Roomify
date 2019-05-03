@@ -1,21 +1,20 @@
 {
   "files": {
-    "main.css": "/roomify/static/css/main.a5479d4f.chunk.css",
-    "main.js": "/roomify/static/js/main.43007b3c.chunk.js",
-    "main.js.map": "/roomify/static/js/main.43007b3c.chunk.js.map",
+    "main.css": "/roomify/static/css/main.64b07275.chunk.css",
+    "main.js": "/roomify/static/js/main.1e52ad94.chunk.js",
+    "main.js.map": "/roomify/static/js/main.1e52ad94.chunk.js.map",
     "runtime~main.js": "/roomify/static/js/runtime~main.1f94ef49.js",
     "runtime~main.js.map": "/roomify/static/js/runtime~main.1f94ef49.js.map",
     "static/css/2.7980c7da.chunk.css": "/roomify/static/css/2.7980c7da.chunk.css",
-    "static/js/2.b91d2936.chunk.js": "/roomify/static/js/2.b91d2936.chunk.js",
-    "static/js/2.b91d2936.chunk.js.map": "/roomify/static/js/2.b91d2936.chunk.js.map",
+    "static/js/2.996be160.chunk.js": "/roomify/static/js/2.996be160.chunk.js",
+    "static/js/2.996be160.chunk.js.map": "/roomify/static/js/2.996be160.chunk.js.map",
     "index.html": "/roomify/index.html",
-    "precache-manifest.0beaf92c354dd3d6becbc4e97fa3cfae.js": "/roomify/precache-manifest.0beaf92c354dd3d6becbc4e97fa3cfae.js",
+    "precache-manifest.de2d8533b7b2c1e2a125e051552c9669.js": "/roomify/precache-manifest.de2d8533b7b2c1e2a125e051552c9669.js",
     "service-worker.js": "/roomify/service-worker.js",
     "static/css/2.7980c7da.chunk.css.map": "/roomify/static/css/2.7980c7da.chunk.css.map",
-    "static/css/main.a5479d4f.chunk.css.map": "/roomify/static/css/main.a5479d4f.chunk.css.map",
+    "static/css/main.64b07275.chunk.css.map": "/roomify/static/css/main.64b07275.chunk.css.map",
     "static/media/HomeView.module.scss": "/roomify/static/media/apartment-pic.e52478de.jpg",
     "static/media/background.jpg": "/roomify/static/media/background.59a648ac.jpg",
-    "static/media/semantic.min.css": "/roomify/static/media/outline-icons.ef60a4f6.woff",
-    "static/media/DetailView.module.scss": "/roomify/static/media/default_apartment.1a55f0f7.jpg"
+    "static/media/semantic.min.css": "/roomify/static/media/outline-icons.ef60a4f6.woff"
   }
 }
