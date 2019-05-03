@@ -30,7 +30,8 @@ export const createApartment = async (
   ed,
   bed,
   bath,
-  userId
+  userId,
+  imgURL
 ) => {
   try {
     let body = {
@@ -41,6 +42,7 @@ export const createApartment = async (
       Bedrooms: bed,
       Bathrooms: bath,
       UserID: userId,
+      ImageURL: imgURL,
       crossDomain: true
     };
 
@@ -74,7 +76,8 @@ export const updateApartment = async (
   ed,
   bed,
   bath,
-  userId
+  userId,
+  imgURL
 ) => {
   try {
     let body = {
@@ -85,6 +88,7 @@ export const updateApartment = async (
       Bedrooms: bed,
       Bathrooms: bath,
       UserID: userId,
+      ImageURL: imgURL,
       crossDomain: true
     };
 
@@ -126,7 +130,7 @@ export const getUsers = async (count, where, limit, select, sort, skip) => {
 };
 
 //POST: '/users’
-export const createUser = async (userId, cp, e, n) => {
+export const createUser = async (userId, cellPhone, email, name, imgURL) => {
   try {
     /**req.body.currentApartments: []
      *req.body.userID: String
@@ -137,12 +141,13 @@ export const createUser = async (userId, cp, e, n) => {
      */
 
     let body = {
-      userID: userId,
-      currentApartments: [],
-      savedApartments: [],
-      cellPhone: cp,
-      email: e,
-      name: n,
+      UserID: userId,
+      CurrentApartments: [],
+      SavedApartments: [],
+      CellPhone: cellPhone,
+      Email: email,
+      Name: name,
+      ImageURL: imgURL,
       crossDomain: true
     };
     const response = await axios.post(BASE_URL + "/users", body);
@@ -167,7 +172,7 @@ export const getUser = async userId => {
 };
 
 //PUT: '/users/:id'
-export const updateUser = async (ca, sa, cp, e, n, userId) => {
+export const updateUser = async (currentApts, savedApts, cellPhone, email, name, userId, imgURL) => {
   try {
     /**req.body.currentApartments: []
      *req.body.savedApartments: []
@@ -177,11 +182,12 @@ export const updateUser = async (ca, sa, cp, e, n, userId) => {
      */
 
     let body = {
-      currentApartments: ca,
-      savedApartments: sa,
-      cellPhone: cp,
-      email: e,
-      name: n,
+      CurrentApartments: currentApts,
+      SavedApartments: savedApts,
+      CellPhone: cellPhone,
+      Email: email,
+      Name: name,
+      ImageURL: imgURL, 
       crossDomain: true
     };
     const response = await axios.post(BASE_URL + "/users/" + userId, body);
