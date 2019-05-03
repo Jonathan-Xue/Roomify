@@ -35,10 +35,8 @@ body {
 .apartmentPic {
   width: 400px;
   height: 400px;
-  background-image: url("./default_apartment.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  object-fit: cover;
+  object-position: center;
 }
 
 

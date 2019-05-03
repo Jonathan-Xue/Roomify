@@ -14,12 +14,14 @@ class RegisterView extends Component {
 
     this.state = {
       name: "",
+      profilePicture: "",
       email: "",
       phoneNumber: "",
       password: "",
       passwordMatch: "",
 
       nameError: true,
+      profilePictureError: true,
       emailError: true,
       phoneNumberError: true,
       passwordError: true,
@@ -31,6 +33,7 @@ class RegisterView extends Component {
 
     // Input Change Handlers
     this.nameInputChangeHandler = this.nameInputChangeHandler.bind(this);
+    this.profilePictureInputChangeHandler = this.profilePictureInputChangeHandler.bind(this);
     this.emailInputChangeHandler = this.emailInputChangeHandler.bind(this);
     this.phoneNumberInputChangeHandler = this.phoneNumberInputChangeHandler.bind(this);
     this.passwordInputChangeHandler = this.passwordInputChangeHandler.bind(this);
@@ -51,6 +54,22 @@ class RegisterView extends Component {
       } else {
         this.setState({ nameError: true });
       }
+    });
+  }
+
+  profilePictureInputChangeHandler(event) {
+    // Update State
+    this.setState({ profilePicture: event.target.value }, () => {
+      // Valid Image URL
+      var img = new Image();
+      img.onload = () => {
+          this.setState({ profilePictureError: false });
+      };
+      img.onerror = () => {
+          this.setState({ profilePictureError: true });
+      };
+
+      img.src = this.state.profilePicture;
     });
   }
 
@@ -119,6 +138,7 @@ class RegisterView extends Component {
     // Form Has An Error
     if (
       this.state.nameError || 
+      this.state.profilePictureError || 
       this.state.emailError ||
       this.state.phoneNumberError ||
       this.state.passwordError ||
@@ -140,7 +160,8 @@ class RegisterView extends Component {
             user.user.uid,
             this.state.phoneNumber,
             this.state.email,
-            this.state.name
+            this.state.name,
+            this.state.profilePicture
           ).then(res => {
             this.props.history.push({
               pathname: "/",
@@ -189,6 +210,15 @@ class RegisterView extends Component {
                 placeholder="Name"
                 onChange={this.nameInputChangeHandler}
                 error={this.state.nameError}
+              />
+            </Form.Field>
+
+            <Form.Field>
+              <Form.Input
+                label="Profile Picture URL"
+                placeholder="https://google.com"
+                onChange={this.profilePictureInputChangeHandler}
+                error={this.state.profilePictureError}
               />
             </Form.Field>
 

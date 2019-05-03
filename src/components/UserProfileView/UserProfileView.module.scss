@@ -60,6 +60,10 @@
 		padding: 2em;
 
 		.ownedApartments {
+			.cardGroup {
+				margin-bottom: 2em;
+			}
+
 			h1 {
 				color: $white;
 				border-bottom: 1px solid $white;

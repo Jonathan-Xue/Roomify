@@ -51,9 +51,8 @@ class ApartmentDetail extends Component {
       <div className={styles.wrapper}>
         <div className={styles.ApartmentDetail}>
           <div className={styles.apartment}>
-            <div className={styles.apartmentPic}>
-              {/* <img src="" alt="apartment" /> */}
-            </div>
+            <img className={styles.apartmentPic} src={this.props.apartment.ImageURL} alt="apartment" />
+
             <div className={styles.apartmentDescription}>
               <Link
                 to={{
