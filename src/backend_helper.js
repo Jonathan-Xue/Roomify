@@ -182,7 +182,7 @@ export const updateUser = async (ca, sa, cp, e, n, userId) => {
       cellPhone: cp,
       email: e,
       name: n,
-      crossDoman: true
+      crossDomain: true
     };
     const response = await axios.post(BASE_URL + "/users/" + userId, body);
     return response;

@@ -3,6 +3,7 @@ import { Button, Form, Message } from "semantic-ui-react";
 
 import firebase from "../Firebase";
 import styles from "./RegisterView.module.scss";
+import { createUser } from "../../backend_helper";
 
 import background from "./background.jpg";
 import Navbar from "../Navbar/Navbar";
@@ -12,11 +13,13 @@ class RegisterView extends Component {
     super();
 
     this.state = {
+      name: "",
       email: "",
       phoneNumber: "",
       password: "",
       passwordMatch: "",
 
+      nameError: true,
       emailError: true,
       phoneNumberError: true,
       passwordError: true,
@@ -27,21 +30,28 @@ class RegisterView extends Component {
     };
 
     // Input Change Handlers
+    this.nameInputChangeHandler = this.nameInputChangeHandler.bind(this);
     this.emailInputChangeHandler = this.emailInputChangeHandler.bind(this);
-    this.phoneNumberInputChangeHandler = this.phoneNumberInputChangeHandler.bind(
-      this
-    );
-    this.passwordInputChangeHandler = this.passwordInputChangeHandler.bind(
-      this
-    );
-    this.passwordMatchInputChangeHandler = this.passwordMatchInputChangeHandler.bind(
-      this
-    );
+    this.phoneNumberInputChangeHandler = this.phoneNumberInputChangeHandler.bind(this);
+    this.passwordInputChangeHandler = this.passwordInputChangeHandler.bind(this);
+    this.passwordMatchInputChangeHandler = this.passwordMatchInputChangeHandler.bind(this);
 
     // Click Handlers
-    this.registerButtonClickHandler = this.registerButtonClickHandler.bind(
-      this
-    );
+    this.registerButtonClickHandler = this.registerButtonClickHandler.bind(this);
+  }
+
+  nameInputChangeHandler(event) {
+    // Update State
+    this.setState({ name: event.target.value }, () => {
+      // Valid Name Check
+      if (
+        /\S/.test(this.state.name)
+      ) {
+        this.setState({ nameError: false });
+      } else {
+        this.setState({ nameError: true });
+      }
+    });
   }
 
   emailInputChangeHandler(event) {
@@ -108,6 +118,7 @@ class RegisterView extends Component {
   registerButtonClickHandler(event) {
     // Form Has An Error
     if (
+      this.state.nameError || 
       this.state.emailError ||
       this.state.phoneNumberError ||
       this.state.passwordError ||
@@ -124,10 +135,17 @@ class RegisterView extends Component {
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then(user => {
-          // console.log(user.uid);
-          this.props.history.push({
-            pathname: "/",
-            state: {}
+          // Create User In Database
+          createUser(
+            user.uid,
+            this.state.phoneNumber,
+            this.state.email,
+            this.state.name
+          ).then(res => {
+            this.props.history.push({
+              pathname: "/",
+              state: {}
+            });
           });
         })
         .catch(err => {
@@ -164,6 +182,15 @@ class RegisterView extends Component {
                 content="An account already exists for this email address. Please log in or confirm that your email address is correct."
               />
             ) : null}
+
+            <Form.Field>
+              <Form.Input
+                label="Name"
+                placeholder="Name"
+                onChange={this.nameInputChangeHandler}
+                error={this.state.nameError}
+              />
+            </Form.Field>
 
             <Form.Field>
               <Form.Input
