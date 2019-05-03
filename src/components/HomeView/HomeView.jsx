@@ -11,17 +11,7 @@ class HomeView extends Component {
   constructor() {
     super();
 
-    this.state = {
-      searchValue: ""
-    };
-
-    this.getSearchVal = this.getSearchVal.bind(this);
-  }
-
-  getSearchVal(val) {
-    this.setState({
-      searchValue: val
-    });
+    this.state = {};
   }
 
   render() {
@@ -44,7 +34,7 @@ class HomeView extends Component {
           </Link>
         </div>
         <Element name="search" className={styles.search_view}>
-          <Search onGetSearch={this.getSearchVal} />
+          <Search />
         </Element>
       </div>
     );

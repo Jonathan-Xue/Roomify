@@ -14,5 +14,15 @@ code {
 }
 
 #root {
-	height: 100%
+  height: 100%
+}
+
+.geosuggest__suggests {
+  -webkit-transition: max-height 0.2s;
+  transition: max-height 0.2s;
+}
+
+.geosuggest__suggests--hidden {
+  max-height: 0 !important;
+  overflow: hidden !important;
 }
