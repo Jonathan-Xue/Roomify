@@ -1,3 +1,6 @@
+@import '../../assets/colors.scss';
+@import '../../assets/fonts.scss';
+
 .login {
   display: flex;
   font-size: 1rem;
@@ -21,7 +24,7 @@
 
   .right {
     align-items: center;
-    background-color: #EEE2DC;
+    background-color: $eggshell;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,17 +35,11 @@
       padding: 0 0;
       text-align: center;
 
-      h1 {
-        color: #AC3B61;
+      .brand {
+        font-family: 'Comfortaa', cursive;
+        color: $medium_ruby;
         font-size: 3em;
         margin: inherit 0;
-        padding: 0 0;
-      }
-
-      h3 {
-        color: #000000;
-        font-size: 1.5em;
-        margin: 0 0;
         padding: 0 0;
       }
     }
@@ -51,15 +48,25 @@
       width: 62.5%;
 
       .register_button {
-        background-color: #EDC7b7;
-        color: #FFFFFF;
-        text-decoration-color: #000000;
+        background-color: $desert_sand;
+        color: $white;
+        text-decoration-color: $dark_blue;
+        transition: background-color 0.2s;
+      }
+
+      .register_button:hover {
+        background-color: $dark_blue;
       }
 
       .sign_in_button {
         background-color: #BAB2B5;
-        color: #FFFFFF;
-        text-decoration-color: #000000;
+        color: $white;
+        text-decoration-color: $dark_blue;
+        transition: background-color 0.2s;
+      }
+
+      .sign_in_button:hover {
+        background-color: $medium_ruby;
       }
     }
   }

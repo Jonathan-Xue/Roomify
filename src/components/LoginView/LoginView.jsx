@@ -82,8 +82,7 @@ class LoginView extends Component {
 
         <div className={styles.right}>
           <div className={styles.header}>
-            <h1>ROOMIFY</h1>
-            <h3>Find Your Home</h3>
+            <h1 className={styles.brand}>Roomify</h1>
           </div>
 
           <Form error className={styles.form}>
@@ -94,7 +93,6 @@ class LoginView extends Component {
                 content="Unable to log in. The username and/or password you have entered is incorrect."
               />
             ) : null}
-
             <Form.Field>
               <Form.Input
                 label="Username/Email"
@@ -102,7 +100,6 @@ class LoginView extends Component {
                 onChange={this.usernameInputChangeHandler}
               />
             </Form.Field>
-
             <Form.Field>
               <Form.Input
                 type="password"
@@ -111,7 +108,6 @@ class LoginView extends Component {
                 onChange={this.passwordInputChangeHandler}
               />
             </Form.Field>
-
             <Form.Field>
               <Button
                 fluid
@@ -122,7 +118,7 @@ class LoginView extends Component {
                 Sign In
               </Button>
             </Form.Field>
-
+            <b>No account?</b>
             <Form.Field>
               <Button
                 fluid

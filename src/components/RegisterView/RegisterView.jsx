@@ -33,23 +33,31 @@ class RegisterView extends Component {
 
     // Input Change Handlers
     this.nameInputChangeHandler = this.nameInputChangeHandler.bind(this);
-    this.profilePictureInputChangeHandler = this.profilePictureInputChangeHandler.bind(this);
+    this.profilePictureInputChangeHandler = this.profilePictureInputChangeHandler.bind(
+      this
+    );
     this.emailInputChangeHandler = this.emailInputChangeHandler.bind(this);
-    this.phoneNumberInputChangeHandler = this.phoneNumberInputChangeHandler.bind(this);
-    this.passwordInputChangeHandler = this.passwordInputChangeHandler.bind(this);
-    this.passwordMatchInputChangeHandler = this.passwordMatchInputChangeHandler.bind(this);
+    this.phoneNumberInputChangeHandler = this.phoneNumberInputChangeHandler.bind(
+      this
+    );
+    this.passwordInputChangeHandler = this.passwordInputChangeHandler.bind(
+      this
+    );
+    this.passwordMatchInputChangeHandler = this.passwordMatchInputChangeHandler.bind(
+      this
+    );
 
     // Click Handlers
-    this.registerButtonClickHandler = this.registerButtonClickHandler.bind(this);
+    this.registerButtonClickHandler = this.registerButtonClickHandler.bind(
+      this
+    );
   }
 
   nameInputChangeHandler(event) {
     // Update State
     this.setState({ name: event.target.value }, () => {
       // Valid Name Check
-      if (
-        /\S/.test(this.state.name)
-      ) {
+      if (/\S/.test(this.state.name)) {
         this.setState({ nameError: false });
       } else {
         this.setState({ nameError: true });
@@ -63,10 +71,10 @@ class RegisterView extends Component {
       // Valid Image URL
       var img = new Image();
       img.onload = () => {
-          this.setState({ profilePictureError: false });
+        this.setState({ profilePictureError: false });
       };
       img.onerror = () => {
-          this.setState({ profilePictureError: true });
+        this.setState({ profilePictureError: true });
       };
 
       img.src = this.state.profilePicture;
@@ -137,8 +145,8 @@ class RegisterView extends Component {
   registerButtonClickHandler(event) {
     // Form Has An Error
     if (
-      this.state.nameError || 
-      this.state.profilePictureError || 
+      this.state.nameError ||
+      this.state.profilePictureError ||
       this.state.emailError ||
       this.state.phoneNumberError ||
       this.state.passwordError ||
@@ -185,8 +193,7 @@ class RegisterView extends Component {
 
         <div className={styles.right}>
           <div className={styles.header}>
-            <h1>ROOMIFY</h1>
-            <h3>Find Your Home</h3>
+            <h1 className={styles.brand}>Roomify</h1>
           </div>
 
           <Form error className={styles.form}>

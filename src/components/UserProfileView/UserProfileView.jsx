@@ -6,7 +6,7 @@ import styles from "./UserProfileView.module.scss";
 import { getUser } from "../../backend_helper";
 
 import Navbar from "../Navbar/Navbar";
-import ApartmentCard from './ApartmentCard/ApartmentCard.jsx'
+import ApartmentCard from "./ApartmentCard/ApartmentCard.jsx";
 
 class UserProfileView extends Component {
   constructor() {
@@ -24,16 +24,18 @@ class UserProfileView extends Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user.uid === this.props.match.params.id) {
         // The Correct User Is Signed In
-        getUser(this.props.match.params.id).then(res => {
-          this.setState({
-            user: res.data.data
+        getUser(this.props.match.params.id)
+          .then(res => {
+            this.setState({
+              user: res.data.data
+            });
+          })
+          .catch(err => {
+            this.props.history.push({
+              pathname: "/",
+              state: {}
+            });
           });
-        }).catch(err => {
-          this.props.history.push({
-            pathname: "/",
-            state: {}
-          });
-        });
       } else {
         // User Is Not Signed In Or Incorrect User Is Signed In
         this.props.history.push({
@@ -42,8 +44,6 @@ class UserProfileView extends Component {
         });
       }
     });
-
-    
   }
 
   addApartmentClickHandler(event) {
@@ -62,7 +62,11 @@ class UserProfileView extends Component {
         <Navbar />
 
         <div className={styles.profile}>
-          <img className={styles.profilePicture} src={this.state.user.ImageURL} alt="profile"></img>
+          <img
+            className={styles.profilePicture}
+            src={this.state.user.ImageURL}
+            alt="profile"
+          />
 
           <div className={styles.profileName}>
             <h1>{this.state.user.Name}</h1>
@@ -70,18 +74,21 @@ class UserProfileView extends Component {
 
           <div className={styles.profileDetails}>
             <span className={styles.profileDetailsSection}>
-              <p>Email: </p>
-              <p>{this.state.user.Email}</p>
+              <p>{"Email: " + this.state.user.Email}</p>
             </span>
-            
+
             <span className={styles.profileDetailsSection}>
-              <p>Phone Number: </p>
-              <p>{this.state.user.CellPhone}</p>
+              <p>{"Phone #: " + this.state.user.CellPhone}</p>
             </span>
           </div>
 
           <div className={styles.profileMisc}>
-            <Button fluid color='red' onClick={this.addApartmentClickHandler}>Add Apartment</Button>
+            <Button
+              className={styles.add_btn}
+              onClick={this.addApartmentClickHandler}
+            >
+              Add Apartment
+            </Button>
           </div>
         </div>
 
@@ -90,14 +97,22 @@ class UserProfileView extends Component {
             <h1>My Apartments</h1>
             <div className={styles.cardGroup}>
               <Card.Group itemsPerRow={this.state.numItemsPerRow}>
-                {this.state.user.CurrentApartments.map((apartmentID) => <ApartmentCard key={apartmentID} id={apartmentID}></ApartmentCard>)}
+                {this.state.user.CurrentApartments.map(apartmentID => (
+                  <ApartmentCard key={apartmentID} id={apartmentID} />
+                ))}
               </Card.Group>
             </div>
           </div>
 
           <div className={styles.favoriteApartments}>
             <h1>Favorite Apartments</h1>
-
+            <div className={styles.cardGroup}>
+              <Card.Group itemsPerRow={this.state.numItemsPerRow}>
+                {this.state.user.SavedApartments.map(apartmentID => (
+                  <ApartmentCard key={apartmentID} id={apartmentID} />
+                ))}
+              </Card.Group>
+            </div>
           </div>
         </div>
       </div>
