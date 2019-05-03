@@ -38,9 +38,9 @@ class UserProfileView extends Component {
 
   render() {
     return (
-      <div className={styles.detailView}>
+      <div className={styles.userprofile}>
         <Navbar />
-        <h1>User Name</h1>
+        <h1>{this.state.user.name}</h1>
       </div>
     );
   }
