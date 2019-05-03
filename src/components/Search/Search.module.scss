@@ -2,7 +2,7 @@
 @import '../../assets/fonts.scss';
 
 .search {
-  padding-top: 70px;
+  padding-top: 90px;
   padding-bottom: 50px;
   padding-left: 20px;
   padding-right: 20px;
@@ -19,8 +19,8 @@
   }
 
   .searchBar {
-    background: $medium_ruby;
-    border-radius: 0px;
+    background: $white;
+    border-radius: 5px;
 
     form {
       display: flex;
@@ -30,7 +30,7 @@
     }
 
     input {
-      color: $white;
+      color: $medium_ruby;
       font-size: 2em;
       width: 50vw;
       max-width: 400px;
@@ -38,6 +38,10 @@
       margin: 0;
       border: 0;
       background-color: transparent;
+    }
+
+    .searchIcon {
+      color: $medium_ruby;
     }
 
     input:focus,
