@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import firebase from "../Firebase";
 import styles from "./HomeView.module.scss";
 import Navbar from "../Navbar/Navbar";
 import Search from "../Search/Search";
@@ -25,16 +24,6 @@ class HomeView extends Component {
     });
   }
 
-  componentWillMount() {
-    firebase.auth().onAuthStateChanged(authenticated => {
-      if (!authenticated) {
-        this.setState({ loggedIn: false });
-      } else {
-        this.setState({ loggedIn: true });
-      }
-    });
-  }
-
   render() {
     return (
       <div className={styles.home}>
@@ -55,10 +44,7 @@ class HomeView extends Component {
           </Link>
         </div>
         <Element name="search" className={styles.search_view}>
-          <Search
-            loggedIn={this.state.loggedIn}
-            onGetSearch={this.getSearchVal}
-          />
+          <Search onGetSearch={this.getSearchVal} />
         </Element>
       </div>
     );

@@ -44,7 +44,7 @@ class Search extends Component {
         </div>
         <div className={styles.apartmentWrapper}>
           <div className={styles.apartmentView}>
-            <ApartmentView loggedIn={this.props.loggedIn} />
+            <ApartmentView />
           </div>
         </div>
       </div>

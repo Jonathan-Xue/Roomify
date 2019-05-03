@@ -47,3 +47,28 @@
     color: $desert_sand;
   }
 }
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.profile_btn {
+  font-size: 1.5em;
+  padding-right: 50px;
+  cursor: pointer;
+
+  .profile_icon {
+    color: $white;
+    transition: color 0.2s;
+  }
+}
+
+.profile_btn:hover {
+  .profile_icon {
+    color: $desert_sand;
+  }
+}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import styles from "./DetailView.module.scss";
+import firebase from "../Firebase";
 
 import {
   FaBed,
@@ -27,17 +28,31 @@ class DetailView extends Component {
   }
 
   componentDidMount() {
-    getApartment(this.props.match.params.id).then(res => {
-      this.setState({
-        apartment: res.data.data
+    var user = firebase.auth().currentUser;
+
+    if (user) {
+      // User is signed in.
+      this.setState({ loggedIn: true });
+    } else {
+      // No user is signed in.
+      this.setState({ loggedIn: false });
+    }
+    getApartment(this.props.match.params.id)
+      .then(res => {
+        this.setState({
+          apartment: res.data.data
+        });
+        if (this.state.apartment.UserID) {
+          this.getUserName(this.state.apartment.UserID);
+        }
+      })
+      .catch(err => {
+        this.props.history.push({
+          pathname: "/",
+          state: {}
+        });
       });
-    }).catch(err => {
-      this.props.history.push({
-        pathname: "/",
-        state: {}
-      });
-    });
-    
+
     if (this.state.apartment.StartDate) {
       this.setState({
         startDate: new Date(this.state.apartment.StartDate)
@@ -51,7 +66,7 @@ class DetailView extends Component {
   }
 
   heartApartment(event) {
-    if (this.props.location.state.loggedIn) {
+    if (this.state.loggedIn) {
       if (event.target.classList.contains(styles.saved)) {
         event.target.classList.remove(styles.saved);
       } else {
@@ -62,7 +77,9 @@ class DetailView extends Component {
 
   getUserName(id) {
     getUser(id).then(res => {
-      return res.data.data.Name;
+      this.setState({
+        userName: res.data.data.Name
+      });
     });
   }
 
@@ -71,8 +88,12 @@ class DetailView extends Component {
       <div className={styles.detailView}>
         <Navbar />
         <div className={styles.apartment}>
-          <img className={styles.apartmentPic} src={this.state.apartment.ImageURL} alt="apartment" />
-          
+          <img
+            className={styles.apartmentPic}
+            src={this.state.apartment.ImageURL}
+            alt="apartment"
+          />
+
           <div className={styles.apartmentDescription}>
             <h2 className={styles.apartmentName}>Apartment</h2>
             <h3 className={styles.apartmentAddress}>

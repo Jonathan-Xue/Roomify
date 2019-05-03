@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import styles from "./ApartmentDetail.module.scss";
 import { getUser } from "../../../../backend_helper";
+import firebase from "../../../Firebase";
 
 import {
   FaBed,
@@ -24,8 +25,23 @@ class ApartmentDetail extends Component {
     this.getUserName = this.getUserName.bind(this);
   }
 
+  componentDidMount() {
+    var user = firebase.auth().currentUser;
+
+    if (user) {
+      // User is signed in.
+      this.setState({ loggedIn: true });
+    } else {
+      // No user is signed in.
+      this.setState({ loggedIn: false });
+    }
+    if (this.props.apartment.UserID) {
+      this.getUserName(this.props.apartment.UserID);
+    }
+  }
+
   heartApartment(event) {
-    if (this.props.loggedIn) {
+    if (this.state.loggedIn) {
       if (event.target.classList.contains(styles.saved)) {
         event.target.classList.remove(styles.saved);
       } else {
@@ -36,7 +52,9 @@ class ApartmentDetail extends Component {
 
   getUserName(id) {
     getUser(id).then(res => {
-      return res.data.data.Name;
+      this.setState({
+        userName: res.data.data.Name
+      });
     });
   }
 
@@ -51,15 +69,16 @@ class ApartmentDetail extends Component {
       <div className={styles.wrapper}>
         <div className={styles.ApartmentDetail}>
           <div className={styles.apartment}>
-            <img className={styles.apartmentPic} src={this.props.apartment.ImageURL} alt="apartment" />
+            <img
+              className={styles.apartmentPic}
+              src={this.props.apartment.ImageURL}
+              alt="apartment"
+            />
 
             <div className={styles.apartmentDescription}>
               <Link
                 to={{
-                  pathname: `/apartment/${this.props.id}`,
-                  state: {
-                    loggedIn: this.props.loggedIn
-                  }
+                  pathname: `/apartment/${this.props.id}`
                 }}
               >
                 <h2 className={styles.apartmentName}>Apartment</h2>

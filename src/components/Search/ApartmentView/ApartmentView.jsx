@@ -38,7 +38,6 @@ class ApartmentView extends Component {
 
         apartmentList.push(
           <ApartmentDetail
-            loggedIn={this.props.loggedIn}
             apartment={apartment}
             id={apartment._id}
             key={apartment._id}
