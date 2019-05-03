@@ -132,7 +132,7 @@ export const addToCurrentApts = async (aptId, userId) => {
 }
 
 // PUT: '/apartments/:userid/saved'
-export const addToCurrentApts = async (aptId, userId) => {
+export const addToSavedApts = async (aptId, userId) => {
   try {
     let body = {
       AptID: aptId,
@@ -148,7 +148,7 @@ export const addToCurrentApts = async (aptId, userId) => {
 }
 
 // DELETE: '/apartments/:userid/saved'
-export const addToCurrentApts = async (aptId, userId) => {
+export const removeFromSavedApts = async (aptId, userId) => {
   try {
     let body = {
       AptID: aptId,
