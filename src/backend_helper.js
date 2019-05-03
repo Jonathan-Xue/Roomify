@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://roomify-backend.herokuapp.com/api/";
+const BASE_URL = "https://roomify-backend.herokuapp.com/api";
 
 //GET '/apartments'
 export const getApartments = async (
