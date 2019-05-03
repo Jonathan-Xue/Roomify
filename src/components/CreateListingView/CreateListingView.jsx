@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, Message } from "semantic-ui-react";
+import moment from 'moment'
+import { DateInput } from 'semantic-ui-calendar-react';
 
 import firebase from "../Firebase";
 import styles from "./CreateListingView.module.scss";
@@ -13,15 +15,15 @@ class createListingView extends Component {
     super();
 
     this.state = {
-      latLong: null,
-      userID: null,
+      latLong: "",
+      userID: "",
 
-      address: null,
-      startDate: null,
-      endDate: null,
-      numBeds: null,
-      numBaths: null,
-      imgURL: null,
+      address: "",
+      startDate: "",
+      endDate: "",
+      numBeds: "",
+      numBaths: "",
+      imgURL: "",
 
       addressError: true,
       startDateError: true,
@@ -44,27 +46,40 @@ class createListingView extends Component {
 
     // Click Handlers
     this.createListingButtonClickHandler = this.createListingButtonClickHandler.bind(this);
-    
+  }
+
+  componentDidMount() {
+
   }
 
   addressInputChangeHandler(event) {
+    this.setState({address: event.target.value}, () => {
 
+    });
   }
 
-  startDateInputChangeHandler(event) {
+  startDateInputChangeHandler(event, {value}) {
+    this.setState({startDate: value}, () => {
 
+    });
   }
 
-  endDateInputChangeHandler(event) {
+  endDateInputChangeHandler(event, {value}) {
+    this.setState({endDate: value}, () => {
 
+    });
   }
 
   numBedsInputChangeHandler(event) {
+    this.setState({numBeds: event.target.value}, () => {
 
+    });
   }
 
   numBathsInputChangeHandler(event) {
+    this.setState({numBaths: event.target.value}, () => {
 
+    });
   }
 
   imgURLInputChangeHandler(event) {
@@ -140,18 +155,28 @@ class createListingView extends Component {
             </Form.Field>
 
             <Form.Field>
-              <Form.Input
+              <DateInput
+                icon=""
                 label="Start Date"
-                placeholder=""
+                value={this.state.startDate}
+                placeholder={moment(new Date()).format("MM-DD-YYYY")}
+                initialDate={moment(new Date())}
+                minDate={moment(new Date())}
+                dateFormat="MM-DD-YYYY"
                 onChange={this.startDateInputChangeHandler}
                 error={this.state.startDateError}
               />
             </Form.Field>
 
             <Form.Field>
-              <Form.Input
+              <DateInput
+                icon=""
                 label="End Date"
-                placeholder=""
+                placeholder={moment(new Date()).add(3, 'months').format("MM-DD-YYYY")}
+                initialDate={moment(new Date()).add(3, 'months')}
+                minDate={moment(new Date()).add(3, 'months')}
+                dateFormat="MM-DD-YYYY"
+                value={this.state.endDate}
                 onChange={this.endDateInputChangeHandler}
                 error={this.state.endDateError}
               />
@@ -161,7 +186,7 @@ class createListingView extends Component {
               <Form.Field>
                 <Form.Input
                   label="# Beds"
-                  placeholder=""
+                  placeholder="0"
                   onChange={this.numBedsInputChangeHandler}
                   error={this.state.numBedsError}
                 />
@@ -170,7 +195,7 @@ class createListingView extends Component {
               <Form.Field>
                 <Form.Input
                   label="# Baths"
-                  placeholder=""
+                  placeholder="0"
                   onChange={this.numBathsInputChangeHandler}
                   error={this.state.numBathsError}
                 />
