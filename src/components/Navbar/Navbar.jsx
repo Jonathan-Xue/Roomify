@@ -19,14 +19,15 @@ class Navbar extends Component {
   }
 
   componentDidMount() {
-    var user = firebase.auth().currentUser;
-    if (user) {
-      this.setState({
-        loginClass: styles.hide,
-        profileClass: styles.show,
-        userId: user.uid
-      });
-    }
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({
+          loginClass: styles.hide,
+          profileClass: styles.show,
+          userId: user.uid
+        });
+      }
+    });
   }
 
   scrollToTop() {

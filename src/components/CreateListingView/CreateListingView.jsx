@@ -49,7 +49,18 @@ class createListingView extends Component {
   }
 
   componentDidMount() {
-
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({
+          userID: user.uid
+        });
+      } else {
+        this.props.history.push({
+          pathname: "/login",
+          state: {}
+        });
+      }
+    });
   }
 
   addressInputChangeHandler(event) {
@@ -60,25 +71,41 @@ class createListingView extends Component {
 
   startDateInputChangeHandler(event, {value}) {
     this.setState({startDate: value}, () => {
-
+      if (moment(this.state.startDate, 'MM-DD-YYYY', true).isValid() || moment(this.state.startDate, 'MM/DD/YYYY', true).isValid()) {
+        this.setState({ startDateError: false });
+      } else {
+        this.setState({ startDateError: true });        
+      }
     });
   }
 
   endDateInputChangeHandler(event, {value}) {
     this.setState({endDate: value}, () => {
-
+      if (moment(this.state.endDate, 'MM-DD-YYYY', true).isValid() || moment(this.state.endDate, 'MM/DD/YYYY', true).isValid()) {
+        this.setState({ endDateError: false });
+      } else {
+        this.setState({ endDateError: true });        
+      }
     });
   }
 
   numBedsInputChangeHandler(event) {
     this.setState({numBeds: event.target.value}, () => {
-
+      if (/^\d+$/.test(this.state.numBeds)) {
+        this.setState({ numBedsError: false });
+      } else {
+        this.setState({ numBedsError: true });
+      }
     });
   }
 
   numBathsInputChangeHandler(event) {
     this.setState({numBaths: event.target.value}, () => {
-
+      if (/^\d+$/.test(this.state.numBaths)) {
+        this.setState({ numBathsError: false });
+      } else {
+        this.setState({ numBathsError: true });
+      }
     });
   }
 
