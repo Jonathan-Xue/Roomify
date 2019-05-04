@@ -4,11 +4,13 @@ import styles from "./Search.module.scss";
 import ApartmentView from "./ApartmentView/ApartmentView";
 import Geosuggest from "react-geosuggest";
 
+import { getNearbyApts, getApartments } from "../../backend_helper";
+
 class Search extends Component {
   constructor() {
     super();
 
-    this.state = { lat: 0, lng: 0 };
+    this.state = { lat: 0, lng: 0, apartments: [] };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -19,7 +21,20 @@ class Search extends Component {
         lat: suggest.location.lat,
         lng: suggest.location.lng
       });
+      getNearbyApts(this.state.lat, this.state.lng, 2.0)
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
+  }
+
+  componentDidMount() {
+    getApartments(100, {}, {}, {}, {}, {}).then(res => {
+      this.setState({ apartments: res.data.data });
+    });
   }
 
   render() {
@@ -33,7 +48,11 @@ class Search extends Component {
         </div>
         <div className={styles.apartmentWrapper}>
           <div className={styles.apartmentView}>
-            <ApartmentView lat={this.state.lat} lng={this.state.lng} />
+            <ApartmentView
+              apartments={this.state.apartments}
+              lat={this.state.lat}
+              lng={this.state.lng}
+            />
           </div>
         </div>
       </div>

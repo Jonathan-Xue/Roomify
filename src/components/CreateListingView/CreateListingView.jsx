@@ -72,15 +72,27 @@ class createListingView extends Component {
   }
 
   addressInputChangeHandler(val) {
-    this.setState({ latLong: [] }, () => {
-      val && this.setState({ address: val.description, latLong: val.location }, () => {
-        if (this.state.latLong) {
-          this.setState({ addressError: false });
-        } else {
-          this.setState({ addressError: true });
-        }
+    if (!val.location) {
+      this.setState({ addressError: true });
+    } else {
+      this.setState({ lat: val.location.lat, lng: val.location.lng }, () => {
+        val &&
+          this.setState(
+            {
+              address: val.description,
+              lat: val.location.lat,
+              lng: val.location.lng
+            },
+            () => {
+              if (this.state.lat && this.state.lng) {
+                this.setState({ addressError: false });
+              } else {
+                this.setState({ addressError: true });
+              }
+            }
+          );
       });
-    });
+    }
   }
 
   startDateInputChangeHandler(event, { value }) {
@@ -151,7 +163,7 @@ class createListingView extends Component {
       this.state.addressError ||
       this.state.startDateError ||
       this.state.endDateError ||
-      this.state.numBedsError || 
+      this.state.numBedsError ||
       this.state.numBathsError ||
       this.state.imgURLError
     ) {
@@ -207,7 +219,10 @@ class createListingView extends Component {
 
             <Form.Field error={this.state.addressError}>
               <label>Address</label>
-              <Geosuggest onSuggestSelect={this.addressInputChangeHandler} onChange={this.addressInputChangeHandler} />
+              <Geosuggest
+                onSuggestSelect={this.addressInputChangeHandler}
+                onChange={this.addressInputChangeHandler}
+              />
             </Form.Field>
 
             <Form.Field>

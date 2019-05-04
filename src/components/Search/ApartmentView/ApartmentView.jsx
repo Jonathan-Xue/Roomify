@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import { getApartments } from "../../../backend_helper";
-
 import ApartmentDetail from "./ApartmentDetail/ApartmentDetail";
 
 class ApartmentView extends Component {
@@ -13,28 +11,12 @@ class ApartmentView extends Component {
     };
   }
 
-  componentDidMount() {
-    getApartments(
-      100,
-      {},
-
-      0,
-      0,
-      0,
-      0
-    ).then(res => {
-      this.setState({
-        apartments: res.data.data
-      });
-    });
-  }
-
   render() {
     var apartmentList = [];
 
-    if (this.state.apartments) {
-      for (let i = 0; i < this.state.apartments.length; i++) {
-        var apartment = this.state.apartments[i];
+    if (this.props.apartments) {
+      for (let i = 0; i < this.props.apartments.length; i++) {
+        var apartment = this.props.apartments[i];
 
         apartmentList.push(
           <ApartmentDetail
