@@ -123,13 +123,15 @@ export const addToCurrentApts = async (aptId, userId) => {
       crossDomain: true
     };
 
-    const response = await axios.put(BASE_URL + '/apartments/' + userId + '/current', body)
+    const response = await axios.put(
+      BASE_URL + "/apartments/" + userId + "/current",
+      body
+    );
     return response;
-
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-}
+};
 
 // PUT: '/apartments/:userid/saved'
 export const addToSavedApts = async (aptId, userId) => {
@@ -139,29 +141,32 @@ export const addToSavedApts = async (aptId, userId) => {
       crossDomain: true
     };
 
-    const response = await axios.put(BASE_URL + '/apartments/' + userId + '/saved', body)
+    const response = await axios.put(
+      BASE_URL + "/apartments/" + userId + "/saved",
+      body
+    );
     return response;
-    
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-}
+};
 
-// DELETE: '/apartments/:userid/saved'
+// DELETE: '/apartments/:userid/saved/:aptid'
 export const removeFromSavedApts = async (aptId, userId) => {
   try {
     let body = {
-      AptID: aptId,
       crossDomain: true
     };
 
-    const response = await axios.delete(BASE_URL + '/apartments/' + userId + '/saved', body)
+    const response = await axios.delete(
+      BASE_URL + "/apartments/" + userId + "/saved/" + aptId,
+      body
+    );
     return response;
-    
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-}
+};
 
 //GET: '/users'
 export const getUsers = async (count, where, limit, select, sort, skip) => {
@@ -221,7 +226,15 @@ export const getUser = async userId => {
 };
 
 //PUT: '/users/:id'
-export const updateUser = async (currentApts, savedApts, cellPhone, email, name, userId, imgURL) => {
+export const updateUser = async (
+  currentApts,
+  savedApts,
+  cellPhone,
+  email,
+  name,
+  userId,
+  imgURL
+) => {
   try {
     /**req.body.CurrentApartments: []
      *req.body.SavedApartments: []
@@ -237,7 +250,7 @@ export const updateUser = async (currentApts, savedApts, cellPhone, email, name,
       CellPhone: cellPhone,
       Email: email,
       Name: name,
-      ImageURL: imgURL, 
+      ImageURL: imgURL,
       crossDomain: true
     };
     const response = await axios.post(BASE_URL + "/users/" + userId, body);

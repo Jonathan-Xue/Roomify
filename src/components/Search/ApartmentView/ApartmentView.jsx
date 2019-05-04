@@ -40,7 +40,8 @@ class ApartmentView extends Component {
           <ApartmentDetail
             apartment={apartment}
             id={apartment._id}
-            key={apartment._id}
+            num={i}
+            key={i}
           />
         );
       }

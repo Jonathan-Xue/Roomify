@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./ApartmentDetail.module.scss";
-import { getUser } from "../../../../backend_helper";
+import {
+  getUser,
+  addToSavedApts,
+  removeFromSavedApts
+} from "../../../../backend_helper";
 import firebase from "../../../Firebase";
 
 import {
@@ -18,7 +22,8 @@ class ApartmentDetail extends Component {
     super();
 
     this.state = {
-      userName: ""
+      userName: "",
+      savedApartments: []
     };
 
     this.heartApartment = this.heartApartment.bind(this);
@@ -31,6 +36,16 @@ class ApartmentDetail extends Component {
     if (user) {
       // User is signed in.
       this.setState({ loggedIn: true });
+      getUser(user.uid).then(res => {
+        this.setState({
+          savedApartments: res.data.data.SavedApartments
+        });
+        if (this.state.savedApartments.includes(this.props.apartment._id)) {
+          document
+            .getElementById("heart_icon" + this.props.num)
+            .classList.add(styles.saved);
+        }
+      });
     } else {
       // No user is signed in.
       this.setState({ loggedIn: false });
@@ -42,10 +57,17 @@ class ApartmentDetail extends Component {
 
   heartApartment(event) {
     if (this.state.loggedIn) {
-      if (event.target.classList.contains(styles.saved)) {
-        event.target.classList.remove(styles.saved);
+      var user = firebase.auth().currentUser;
+      if (event.currentTarget.classList.contains(styles.saved)) {
+        event.currentTarget.classList.remove(styles.saved);
+        removeFromSavedApts(this.props.apartment._id, user.uid).then(res => {
+          console.log(res);
+        });
       } else {
-        event.target.classList.add(styles.saved);
+        event.currentTarget.classList.add(styles.saved);
+        addToSavedApts(this.props.apartment._id, user.uid).then(res => {
+          console.log(res);
+        });
       }
     }
   }
@@ -121,7 +143,10 @@ class ApartmentDetail extends Component {
             </div>
 
             <div className={styles.heart}>
-              <FaHeart onClick={this.heartApartment} />
+              <FaHeart
+                id={"heart_icon" + this.props.num}
+                onClick={this.heartApartment}
+              />
             </div>
           </div>
         </div>

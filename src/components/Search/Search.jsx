@@ -14,9 +14,11 @@ class Search extends Component {
   }
 
   handleSubmit(suggest) {
-    this.setState({
-      location: suggest.location // has lat and lng
-    });
+    if (suggest) {
+      this.setState({
+        location: suggest.location // has lat and lng
+      });
+    }
   }
 
   render() {
