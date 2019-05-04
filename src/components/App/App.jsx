@@ -19,8 +19,10 @@ class App extends Component {
 
           <Route exact path="/login" component={LoginView} />
           <Route exact path="/register" component={RegisterView} />
+
           <Route path="/user/:id" component={UserProfileView} />
           <Route path="/apartment/:id" component={DetailView} />
+          
           <Route exact path="/createListing" component={CreateListingView} />
           <Redirect from="/*" to="/" />
         </Switch>

@@ -2,8 +2,8 @@
 @import '../../assets/fonts.scss';
 
 .search {
-  padding-top: 90px;
-  padding-bottom: 150px;
+  padding-top: 75px;
+  padding-bottom: 75px;
   padding-left: 20px;
   padding-right: 20px;
   width: 100%;
@@ -72,8 +72,9 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  min-height: 100vh;
+  height: auto;
   background: $dark_blue;
+  margin-bottom: 75px;
 }
 
 .apartmentView {
