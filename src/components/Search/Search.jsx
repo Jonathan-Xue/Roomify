@@ -23,7 +23,9 @@ class Search extends Component {
       });
       getNearbyApts(this.state.lat, this.state.lng, 2.0)
         .then(res => {
-          console.log(res);
+          this.setState({
+            apartments: res.data.data
+          });
         })
         .catch(err => {
           console.log(err);
