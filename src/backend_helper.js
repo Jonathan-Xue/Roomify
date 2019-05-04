@@ -287,7 +287,7 @@ export const getNearbyApts = async (lat, long, km) => {
       crossDomain: true
     };
 
-    const response = await axios.get(BASE_URL + '/apartments/nearby/apts', body);
+    const response = await axios.get(BASE_URL + '/apartments/nearby/' + lat +'/' + long, body);
     return response;
   } catch (err) {
     console.log(err)
