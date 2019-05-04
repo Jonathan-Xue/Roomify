@@ -22,12 +22,12 @@ class ApartmentDetail extends Component {
     super();
 
     this.state = {
-      userName: "",
+      userEmail: "",
       savedApartments: []
     };
 
     this.heartApartment = this.heartApartment.bind(this);
-    this.getUserName = this.getUserName.bind(this);
+    this.getuserEmail = this.getuserEmail.bind(this);
   }
 
   componentDidMount() {
@@ -50,7 +50,7 @@ class ApartmentDetail extends Component {
     }
 
     if (this.props.apartment.UserID) {
-      this.getUserName(this.props.apartment.UserID);
+      this.getuserEmail(this.props.apartment.UserID);
     }
   }
 
@@ -71,10 +71,10 @@ class ApartmentDetail extends Component {
     }
   }
 
-  getUserName(id) {
+  getuserEmail(id) {
     getUser(id).then(res => {
       this.setState({
-        userName: res.data.data.Name
+        userEmail: res.data.data.Email
       });
     });
   }
@@ -137,7 +137,7 @@ class ApartmentDetail extends Component {
                 <div className={styles.userIcon}>
                   <FaUserAlt />
                 </div>
-                {this.state.userName}
+                {this.state.userEmail}
               </div>
             </div>
 

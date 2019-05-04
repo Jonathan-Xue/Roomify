@@ -25,12 +25,12 @@ class DetailView extends Component {
 
     this.state = {
       apartment: {},
-      userName: "",
+      userEmail: "",
       savedApartments: []
     };
 
     this.heartApartment = this.heartApartment.bind(this);
-    this.getUserName = this.getUserName.bind(this);
+    this.getUserEmail = this.getUserEmail.bind(this);
   }
 
   componentDidMount() {
@@ -57,7 +57,7 @@ class DetailView extends Component {
           apartment: res.data.data
         });
         if (this.state.apartment.UserID) {
-          this.getUserName(this.state.apartment.UserID);
+          this.getUserEmail(this.state.apartment.UserID);
         }
       })
       .catch(err => {
@@ -96,10 +96,10 @@ class DetailView extends Component {
     }
   }
 
-  getUserName(id) {
+  getUserEmail(id) {
     getUser(id).then(res => {
       this.setState({
-        userName: res.data.data.Name
+        userEmail: res.data.data.Email
       });
     });
   }
@@ -150,7 +150,7 @@ class DetailView extends Component {
               <div className={styles.userIcon}>
                 <FaUserAlt />
               </div>
-              {this.state.userName}
+              {this.state.userEmail}
             </div>
           </div>
           <div className={styles.heart}>
