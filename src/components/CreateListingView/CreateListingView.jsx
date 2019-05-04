@@ -16,7 +16,8 @@ class createListingView extends Component {
     super();
 
     this.state = {
-      latLong: [],
+      lat: 0,
+      lng: 0,
       userID: "",
 
       address: "",
@@ -70,8 +71,11 @@ class createListingView extends Component {
   }
 
   addressInputChangeHandler(val) {
-    this.setState({ address: val.description, latLong: val.location });
-    console.log(this.state);
+    this.setState({
+      address: val.description,
+      lat: val.location.lat,
+      lng: val.location.lng
+    });
   }
 
   startDateInputChangeHandler(event, { value }) {
@@ -151,7 +155,8 @@ class createListingView extends Component {
 
       // Create Apartment
       createApartment(
-        this.state.latLong,
+        this.state.lat,
+        this.state.lng,
         this.state.address,
         this.state.startDate,
         this.state.endDate,

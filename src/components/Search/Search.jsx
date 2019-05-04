@@ -8,7 +8,7 @@ class Search extends Component {
   constructor() {
     super();
 
-    this.state = { location: {} };
+    this.state = { lat: 0, lng: 0 };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -16,7 +16,8 @@ class Search extends Component {
   handleSubmit(suggest) {
     if (suggest) {
       this.setState({
-        location: suggest.location // has lat and lng
+        lat: suggest.location.lat,
+        lng: suggest.location.lng
       });
     }
   }
@@ -32,7 +33,7 @@ class Search extends Component {
         </div>
         <div className={styles.apartmentWrapper}>
           <div className={styles.apartmentView}>
-            <ApartmentView location={this.state.location} />
+            <ApartmentView lat={this.state.lat} lng={this.state.lng} />
           </div>
         </div>
       </div>
