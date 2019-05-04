@@ -53,6 +53,17 @@ class RegisterView extends Component {
     );
   }
 
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.props.history.push({
+          pathname: "/",
+          state: {}
+        });
+      }
+    });
+  }
+
   nameInputChangeHandler(event) {
     // Update State
     this.setState({ name: event.target.value }, () => {
