@@ -24,7 +24,8 @@ export const getApartments = async (
 
 //POST: '/apartments'
 export const createApartment = async (
-  latLong,
+  lat,
+  long,
   addr,
   sd,
   ed,
@@ -35,7 +36,8 @@ export const createApartment = async (
 ) => {
   try {
     let body = {
-      LatLong: latLong,
+      Lat: lat,
+      Long: long,
       Address: addr,
       StartDate: sd,
       EndDate: ed,
@@ -70,7 +72,8 @@ export const getApartment = async aptId => {
 //PUT: '/apartments/:id'
 export const updateApartment = async (
   aptId,
-  latLong,
+  lat,
+  long,
   addr,
   sd,
   ed,
@@ -81,7 +84,8 @@ export const updateApartment = async (
 ) => {
   try {
     let body = {
-      LatLong: latLong,
+      Lat: lat,
+      Long: long,
       Address: addr,
       StartDate: sd,
       EndDate: ed,
@@ -271,5 +275,21 @@ export const deleteUser = async userId => {
     return response;
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const getNearbyApts = async (lat, long, km) => {
+  try {
+    let body = {
+      Lat: lat,
+      Long: long,
+      Radius: km,
+      crossDomain: true
+    };
+
+    const response = await axios.get(BASE_URL + '/apartments/nearby/apts', body);
+    return response;
+  } catch (err) {
+    console.log(err)
   }
 };
