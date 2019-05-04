@@ -12,7 +12,12 @@ import {
 } from "react-icons/fa";
 import Navbar from "../Navbar/Navbar";
 
-import { getApartment, getUser } from "../../backend_helper";
+import {
+  getApartment,
+  getUser,
+  addToSavedApts,
+  removeFromSavedApts
+} from "../../backend_helper";
 
 class DetailView extends Component {
   constructor() {
@@ -20,7 +25,8 @@ class DetailView extends Component {
 
     this.state = {
       apartment: {},
-      userName: ""
+      userName: "",
+      savedApartments: []
     };
 
     this.heartApartment = this.heartApartment.bind(this);
@@ -29,13 +35,20 @@ class DetailView extends Component {
 
   componentDidMount() {
     // Logged In
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this._isMounted && this.setState({ loggedIn: true });
-      } else {
-        this._isMounted && this.setState({ loggedIn: false });
-      }
-    });
+    var user = firebase.auth().currentUser;
+    if (user) {
+      this.setState({ loggedIn: true });
+      getUser(user.uid).then(res => {
+        this.setState({
+          savedApartments: res.data.data.SavedApartments
+        });
+        if (this.state.savedApartments.includes(this.state.apartment._id)) {
+          document.getElementById("heart_icon").classList.add(styles.saved);
+        }
+      });
+    } else {
+      this.setState({ loggedIn: false });
+    }
 
     // Get Apartment
     getApartment(this.props.match.params.id)
@@ -68,10 +81,17 @@ class DetailView extends Component {
 
   heartApartment(event) {
     if (this.state.loggedIn) {
-      if (event.target.classList.contains(styles.saved)) {
-        event.target.classList.remove(styles.saved);
+      var user = firebase.auth().currentUser;
+      if (event.currentTarget.classList.contains(styles.saved)) {
+        event.currentTarget.classList.remove(styles.saved);
+        removeFromSavedApts(this.state.apartment._id, user.uid).then(res => {
+          console.log(res);
+        });
       } else {
-        event.target.classList.add(styles.saved);
+        event.currentTarget.classList.add(styles.saved);
+        addToSavedApts(this.state.apartment._id, user.uid).then(res => {
+          console.log(res);
+        });
       }
     }
   }
@@ -134,7 +154,7 @@ class DetailView extends Component {
             </div>
           </div>
           <div className={styles.heart}>
-            <FaHeart onClick={this.heartApartment} />
+            <FaHeart id={"heart_icon"} onClick={this.heartApartment} />
           </div>
         </div>
       </div>
