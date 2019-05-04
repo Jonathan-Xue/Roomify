@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, Message } from "semantic-ui-react";
-import moment from 'moment'
-import { DateInput } from 'semantic-ui-calendar-react';
+import moment from "moment";
+import { DateInput } from "semantic-ui-calendar-react";
 
 import firebase from "../Firebase";
 import styles from "./CreateListingView.module.scss";
@@ -9,6 +9,7 @@ import { createApartment } from "../../backend_helper";
 
 import defaultBackground from "./default.jpg";
 import Navbar from "../Navbar/Navbar";
+import Geosuggest from "react-geosuggest";
 
 class createListingView extends Component {
   constructor() {
@@ -25,7 +26,6 @@ class createListingView extends Component {
       numBaths: "",
       imgURL: "",
 
-      addressError: true,
       startDateError: true,
       endDateError: true,
       numBedsError: true,
@@ -38,14 +38,20 @@ class createListingView extends Component {
 
     // Input Change Handlers
     this.addressInputChangeHandler = this.addressInputChangeHandler.bind(this);
-    this.startDateInputChangeHandler = this.startDateInputChangeHandler.bind(this);
+    this.startDateInputChangeHandler = this.startDateInputChangeHandler.bind(
+      this
+    );
     this.endDateInputChangeHandler = this.endDateInputChangeHandler.bind(this);
     this.numBedsInputChangeHandler = this.numBedsInputChangeHandler.bind(this);
-    this.numBathsInputChangeHandler = this.numBathsInputChangeHandler.bind(this);
+    this.numBathsInputChangeHandler = this.numBathsInputChangeHandler.bind(
+      this
+    );
     this.imgURLInputChangeHandler = this.imgURLInputChangeHandler.bind(this);
 
     // Click Handlers
-    this.createListingButtonClickHandler = this.createListingButtonClickHandler.bind(this);
+    this.createListingButtonClickHandler = this.createListingButtonClickHandler.bind(
+      this
+    );
   }
 
   componentDidMount() {
@@ -63,40 +69,39 @@ class createListingView extends Component {
     });
   }
 
-  addressInputChangeHandler(event) {
-    this.setState({address: event.target.value}, () => {
-      if (true /*TODO: valid address (lat-long)*/) {
-        // TODO: setState( {latLong: xxx })
-
-        this.setState({ addressError: false });
-      } else {
-        this.setState({ addressError: true });
-      }
-    });
+  addressInputChangeHandler(val) {
+    this.setState({ address: val.description });
+    console.log(this.state.address);
   }
 
-  startDateInputChangeHandler(event, {value}) {
-    this.setState({startDate: value}, () => {
-      if (moment(this.state.startDate, 'MM-DD-YYYY', true).isValid() || moment(this.state.startDate, 'MM/DD/YYYY', true).isValid()) {
+  startDateInputChangeHandler(event, { value }) {
+    this.setState({ startDate: value }, () => {
+      if (
+        moment(this.state.startDate, "MM-DD-YYYY", true).isValid() ||
+        moment(this.state.startDate, "MM/DD/YYYY", true).isValid()
+      ) {
         this.setState({ startDateError: false });
       } else {
-        this.setState({ startDateError: true });        
+        this.setState({ startDateError: true });
       }
     });
   }
 
-  endDateInputChangeHandler(event, {value}) {
-    this.setState({endDate: value}, () => {
-      if (moment(this.state.endDate, 'MM-DD-YYYY', true).isValid() || moment(this.state.endDate, 'MM/DD/YYYY', true).isValid()) {
+  endDateInputChangeHandler(event, { value }) {
+    this.setState({ endDate: value }, () => {
+      if (
+        moment(this.state.endDate, "MM-DD-YYYY", true).isValid() ||
+        moment(this.state.endDate, "MM/DD/YYYY", true).isValid()
+      ) {
         this.setState({ endDateError: false });
       } else {
-        this.setState({ endDateError: true });        
+        this.setState({ endDateError: true });
       }
     });
   }
 
   numBedsInputChangeHandler(event) {
-    this.setState({numBeds: event.target.value}, () => {
+    this.setState({ numBeds: event.target.value }, () => {
       if (/^\d+$/.test(this.state.numBeds)) {
         this.setState({ numBedsError: false });
       } else {
@@ -106,7 +111,7 @@ class createListingView extends Component {
   }
 
   numBathsInputChangeHandler(event) {
-    this.setState({numBaths: event.target.value}, () => {
+    this.setState({ numBaths: event.target.value }, () => {
       if (/^\d+$/.test(this.state.numBaths)) {
         this.setState({ numBathsError: false });
       } else {
@@ -134,9 +139,8 @@ class createListingView extends Component {
   createListingButtonClickHandler(event) {
     // Form Has An Error
     if (
-      this.state.addressError ||
-      this.state.startDateError || 
-      this.state.endDateError || 
+      this.state.startDateError ||
+      this.state.endDateError ||
       this.state.imgURLError
     ) {
       this.setState({ formError: true });
@@ -155,15 +159,17 @@ class createListingView extends Component {
         this.state.numBaths,
         this.state.userID,
         this.state.imgURL
-      ).then(res => {
-        // TODO: Fix -> Go To User Profile Page
-        this.props.history.push({
-          pathname: '/',
-          state: {}
+      )
+        .then(res => {
+          // TODO: Fix -> Go To User Profile Page
+          this.props.history.push({
+            pathname: "/",
+            state: {}
+          });
+        })
+        .catch(err => {
+          this.setState({ createListingError: err });
         });
-      }).catch(err => {
-        this.setState({ createListingError: err });
-      });
     }
   }
 
@@ -187,12 +193,7 @@ class createListingView extends Component {
             ) : null}
 
             <Form.Field>
-              <Form.Input
-                label="Address"
-                placeholder="Address"
-                onChange={this.addressInputChangeHandler}
-                error={this.state.addressError}
-              />
+              <Geosuggest onSuggestSelect={this.addressInputChangeHandler} />
             </Form.Field>
 
             <Form.Field>
@@ -222,9 +223,11 @@ class createListingView extends Component {
               <DateInput
                 icon=""
                 label="End Date"
-                placeholder={moment(new Date()).add(3, 'months').format("MM-DD-YYYY")}
-                initialDate={moment(new Date()).add(3, 'months')}
-                minDate={moment(new Date()).add(3, 'months')}
+                placeholder={moment(new Date())
+                  .add(3, "months")
+                  .format("MM-DD-YYYY")}
+                initialDate={moment(new Date()).add(3, "months")}
+                minDate={moment(new Date()).add(3, "months")}
                 dateFormat="MM-DD-YYYY"
                 value={this.state.endDate}
                 onChange={this.endDateInputChangeHandler}
@@ -232,7 +235,7 @@ class createListingView extends Component {
               />
             </Form.Field>
 
-            <Form.Group widths='equal'>
+            <Form.Group widths="equal" className={styles.field}>
               <Form.Field>
                 <Form.Input
                   label="# Beds"
@@ -266,9 +269,13 @@ class createListingView extends Component {
         </div>
 
         <div className={styles.right}>
-          <img className={styles.background} alt="" src={this.state.imgURLError ? defaultBackground : this.state.imgURL} />
+          <img
+            className={styles.background}
+            alt=""
+            src={this.state.imgURLError ? defaultBackground : this.state.imgURL}
+          />
         </div>
-      </div>        
+      </div>
     );
   }
 }

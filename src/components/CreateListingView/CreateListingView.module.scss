@@ -32,6 +32,10 @@
     .form {
       width: 62.5%;
 
+      .field {
+        flex-wrap: wrap;
+      }
+
       .createListingButton {
         background-color: $black_shadows;
         color: $white;
@@ -41,6 +45,28 @@
 
       .createListingButton:hover {
         background-color: $medium_ruby;
+      }
+
+      ul {
+        max-height: 20em;
+        padding: 0;
+        margin-top: -1px;
+        background: $white;
+        list-style: none;
+        z-index: 3;
+      }
+
+      li {
+        cursor: pointer;
+      }
+
+      li:hover,
+      li:focus {
+        background: $eggshell;
+      }
+
+      li:active {
+        background: $desert_sand;
       }
     }
   }
