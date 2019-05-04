@@ -27,6 +27,7 @@ class createListingView extends Component {
       numBaths: "",
       imgURL: "",
 
+      addressError: true,
       startDateError: true,
       endDateError: true,
       numBedsError: true,
@@ -71,10 +72,14 @@ class createListingView extends Component {
   }
 
   addressInputChangeHandler(val) {
-    this.setState({
-      address: val.description,
-      lat: val.location.lat,
-      lng: val.location.lng
+    this.setState({ latLong: [] }, () => {
+      val && this.setState({ address: val.description, latLong: val.location }, () => {
+        if (this.state.latLong) {
+          this.setState({ addressError: false });
+        } else {
+          this.setState({ addressError: true });
+        }
+      });
     });
   }
 
@@ -143,8 +148,11 @@ class createListingView extends Component {
   createListingButtonClickHandler(event) {
     // Form Has An Error
     if (
+      this.state.addressError ||
       this.state.startDateError ||
       this.state.endDateError ||
+      this.state.numBedsError || 
+      this.state.numBathsError ||
       this.state.imgURLError
     ) {
       this.setState({ formError: true });
@@ -197,8 +205,9 @@ class createListingView extends Component {
               />
             ) : null}
 
-            <Form.Field>
-              <Geosuggest onSuggestSelect={this.addressInputChangeHandler} />
+            <Form.Field error={this.state.addressError}>
+              <label>Address</label>
+              <Geosuggest onSuggestSelect={this.addressInputChangeHandler} onChange={this.addressInputChangeHandler} />
             </Form.Field>
 
             <Form.Field>
