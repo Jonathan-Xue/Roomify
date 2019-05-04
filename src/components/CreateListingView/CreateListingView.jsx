@@ -15,7 +15,7 @@ class createListingView extends Component {
     super();
 
     this.state = {
-      latLong: "",
+      latLong: [],
       userID: "",
 
       address: "",
@@ -65,7 +65,13 @@ class createListingView extends Component {
 
   addressInputChangeHandler(event) {
     this.setState({address: event.target.value}, () => {
+      if (true /*TODO: valid address (lat-long)*/) {
+        // TODO: setState( {latLong: xxx })
 
+        this.setState({ addressError: false });
+      } else {
+        this.setState({ addressError: true });
+      }
     });
   }
 
@@ -140,7 +146,24 @@ class createListingView extends Component {
       this.setState({ formError: false });
 
       // Create Apartment
-      // this.setState({ createListingError: err });
+      createApartment(
+        this.state.latLong,
+        this.state.address,
+        this.state.startDate,
+        this.state.endDate,
+        this.state.numBeds,
+        this.state.numBaths,
+        this.state.userID,
+        this.state.imgURL
+      ).then(res => {
+        // TODO: Fix -> Go To User Profile Page
+        this.props.history.push({
+          pathname: '/',
+          state: {}
+        });
+      }).catch(err => {
+        this.setState({ createListingError: err });
+      });
     }
   }
 
