@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/roomify/static/css/main.2e95e516.chunk.css",
+    "main.css": "/roomify/static/css/main.aeaf2bb6.chunk.css",
     "main.js": "/roomify/static/js/main.58a4a74e.chunk.js",
     "main.js.map": "/roomify/static/js/main.58a4a74e.chunk.js.map",
     "runtime~main.js": "/roomify/static/js/runtime~main.1f94ef49.js",
@@ -9,10 +9,10 @@
     "static/js/2.01f862cc.chunk.js": "/roomify/static/js/2.01f862cc.chunk.js",
     "static/js/2.01f862cc.chunk.js.map": "/roomify/static/js/2.01f862cc.chunk.js.map",
     "index.html": "/roomify/index.html",
-    "precache-manifest.0f778d51fac0fe89c2e5012abf13b848.js": "/roomify/precache-manifest.0f778d51fac0fe89c2e5012abf13b848.js",
+    "precache-manifest.dc8692701472f190959c00d380e6251c.js": "/roomify/precache-manifest.dc8692701472f190959c00d380e6251c.js",
     "service-worker.js": "/roomify/service-worker.js",
     "static/css/2.7980c7da.chunk.css.map": "/roomify/static/css/2.7980c7da.chunk.css.map",
-    "static/css/main.2e95e516.chunk.css.map": "/roomify/static/css/main.2e95e516.chunk.css.map",
+    "static/css/main.aeaf2bb6.chunk.css.map": "/roomify/static/css/main.aeaf2bb6.chunk.css.map",
     "static/media/HomeView.module.scss": "/roomify/static/media/apartment-pic.e52478de.jpg",
     "static/media/background.jpg": "/roomify/static/media/background.c20f295e.jpg",
     "static/media/semantic.min.css": "/roomify/static/media/outline-icons.ef60a4f6.woff",

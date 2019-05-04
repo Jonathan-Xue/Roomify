@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "506ad5901d3f52c2d8f6bee7c110af8a",
+    "revision": "3cfe749dcfd15de2f65743675b71b83b",
     "url": "/roomify/index.html"
   },
   {
@@ -8,15 +8,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/roomify/static/css/2.7980c7da.chunk.css"
   },
   {
-    "revision": "82d893b213728a5976dc",
-    "url": "/roomify/static/css/main.2e95e516.chunk.css"
+    "revision": "099d04d2516842a0f242",
+    "url": "/roomify/static/css/main.aeaf2bb6.chunk.css"
   },
   {
     "revision": "154bdb3d6d4b42226c9c",
     "url": "/roomify/static/js/2.01f862cc.chunk.js"
   },
   {
-    "revision": "82d893b213728a5976dc",
+    "revision": "099d04d2516842a0f242",
     "url": "/roomify/static/js/main.58a4a74e.chunk.js"
   },
   {
