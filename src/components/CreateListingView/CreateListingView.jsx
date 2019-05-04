@@ -70,8 +70,7 @@ class createListingView extends Component {
   }
 
   addressInputChangeHandler(val) {
-    this.setState({ address: val.description });
-    console.log(this.state.address);
+    this.setState({ address: val.description, latLong: val.location });
   }
 
   startDateInputChangeHandler(event, { value }) {
