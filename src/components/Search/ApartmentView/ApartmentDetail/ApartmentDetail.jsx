@@ -31,25 +31,25 @@ class ApartmentDetail extends Component {
   }
 
   componentDidMount() {
-    var user = firebase.auth().currentUser;
-
-    if (user) {
-      // User is signed in.
-      this.setState({ loggedIn: true });
-      getUser(user.uid).then(res => {
-        this.setState({
-          savedApartments: res.data.data.SavedApartments
+    // Logged In
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this._isMounted && this.setState({ loggedIn: true });
+        getUser(user.uid).then(res => {
+          this.setState({
+            savedApartments: res.data.data.SavedApartments
+          });
+          if (this.state.savedApartments.includes(this.props.apartment._id)) {
+            document
+              .getElementById("heart_icon" + this.props.num)
+              .classList.add(styles.saved);
+          }
         });
-        if (this.state.savedApartments.includes(this.props.apartment._id)) {
-          document
-            .getElementById("heart_icon" + this.props.num)
-            .classList.add(styles.saved);
-        }
-      });
-    } else {
-      // No user is signed in.
-      this.setState({ loggedIn: false });
-    }
+      } else {
+        this._isMounted && this.setState({ loggedIn: false });
+      }
+    });
+
     if (this.props.apartment.UserID) {
       this.getUserName(this.props.apartment.UserID);
     }

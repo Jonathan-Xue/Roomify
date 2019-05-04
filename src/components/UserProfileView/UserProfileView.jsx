@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Button, Card } from "semantic-ui-react";
 
 import firebase from "../Firebase";
@@ -17,12 +18,12 @@ class UserProfileView extends Component {
       user: null
     };
 
-    this.addApartmentClickHandler.bind(this);
+    this.logoutClickHandler.bind(this);
   }
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      if (user.uid === this.props.match.params.id) {
+      if (user && user.uid === this.props.match.params.id) {
         // The Correct User Is Signed In
         getUser(this.props.match.params.id)
           .then(res => {
@@ -46,8 +47,12 @@ class UserProfileView extends Component {
     });
   }
 
-  addApartmentClickHandler(event) {
-    console.log("Add Apartment");
+  logoutClickHandler(event) {
+    firebase.auth().signOut().then(() => {
+
+    }).catch(err => {
+
+    });
   }
 
   render() {
@@ -84,10 +89,21 @@ class UserProfileView extends Component {
 
           <div className={styles.profileMisc}>
             <Button
+              fluid
               className={styles.add_btn}
-              onClick={this.addApartmentClickHandler}
+              as={Link} to={`/createListing`}
             >
               Add Apartment
+            </Button>
+          </div>
+
+          <div className={styles.profileMisc}>
+            <Button
+              fluid
+              className={styles.logout_btn}
+              onClick={this.logoutClickHandler}
+            >
+              Logout
             </Button>
           </div>
         </div>

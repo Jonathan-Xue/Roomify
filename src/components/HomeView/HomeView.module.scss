@@ -15,9 +15,6 @@
   align-items: center;
 
   .jumbotron_text {
-    margin-top: -40px;
-    padding-left: 20px;
-    padding-right: 20px;
     text-align: center;
     background: rgba(255, 255, 255, 0.4);
     padding: 20px;
@@ -42,7 +39,7 @@
     font-size: 3em;
     color: $white;
     margin-top: 30px;
-    opacity: .7;
+    opacity: .75;
     cursor: pointer;
     transition: 0.5s;
   }

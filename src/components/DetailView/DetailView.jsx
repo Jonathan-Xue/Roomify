@@ -28,15 +28,16 @@ class DetailView extends Component {
   }
 
   componentDidMount() {
-    var user = firebase.auth().currentUser;
+    // Logged In
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this._isMounted && this.setState({ loggedIn: true });
+      } else {
+        this._isMounted && this.setState({ loggedIn: false });
+      }
+    });
 
-    if (user) {
-      // User is signed in.
-      this.setState({ loggedIn: true });
-    } else {
-      // No user is signed in.
-      this.setState({ loggedIn: false });
-    }
+    // Get Apartment
     getApartment(this.props.match.params.id)
       .then(res => {
         this.setState({

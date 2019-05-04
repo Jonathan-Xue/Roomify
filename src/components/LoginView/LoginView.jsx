@@ -34,6 +34,17 @@ class LoginView extends Component {
     );
   }
 
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.props.history.push({
+          pathname: "/",
+          state: {}
+        });
+      }
+    });
+  }
+
   usernameInputChangeHandler(event) {
     // Update State
     this.setState({ username: event.target.value }, () => {
