@@ -26,15 +26,15 @@ class ApartmentDetail extends Component {
   }
 
   componentDidMount() {
-    var user = firebase.auth().currentUser;
-
-    if (user) {
-      // User is signed in.
-      this.setState({ loggedIn: true });
-    } else {
-      // No user is signed in.
-      this.setState({ loggedIn: false });
-    }
+    // Logged In
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this._isMounted && this.setState({ loggedIn: true });
+      } else {
+        this._isMounted && this.setState({ loggedIn: false });
+      }
+    });
+    
     if (this.props.apartment.UserID) {
       this.getUserName(this.props.apartment.UserID);
     }
