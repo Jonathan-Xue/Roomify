@@ -32,23 +32,22 @@ class ApartmentDetail extends Component {
 
   componentDidMount() {
     // Logged In
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this._isMounted && this.setState({ loggedIn: true });
-        getUser(user.uid).then(res => {
-          this.setState({
-            savedApartments: res.data.data.SavedApartments
-          });
-          if (this.state.savedApartments.includes(this.props.apartment._id)) {
-            document
-              .getElementById("heart_icon" + this.props.num)
-              .classList.add(styles.saved);
-          }
+    var user = firebase.auth().currentUser;
+    if (user) {
+      this.setState({ loggedIn: true });
+      getUser(user.uid).then(res => {
+        this.setState({
+          savedApartments: res.data.data.SavedApartments
         });
-      } else {
-        this._isMounted && this.setState({ loggedIn: false });
-      }
-    });
+        if (this.state.savedApartments.includes(this.props.apartment._id)) {
+          document
+            .getElementById("heart_icon" + this.props.num)
+            .classList.add(styles.saved);
+        }
+      });
+    } else {
+      this.setState({ loggedIn: false });
+    }
 
     if (this.props.apartment.UserID) {
       this.getUserName(this.props.apartment.UserID);
